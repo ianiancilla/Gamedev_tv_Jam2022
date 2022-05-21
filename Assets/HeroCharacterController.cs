@@ -24,9 +24,14 @@ public class HeroCharacterController : MonoBehaviour
     [SerializeField] private int startingLane = 1;
     [SerializeField] private float laneSwappingSpeed = 1f;
 
+    [Header("Tiny State")]
+    [SerializeField] [Range (0.1f, 1f)] float tinyScale = .3f;
+
+
 
     // member variables
     Vector3 motion;
+    float charaControllerDefaultHeight;
 
     // states
     private bool jumping = false;
@@ -39,7 +44,6 @@ public class HeroCharacterController : MonoBehaviour
     private bool laneSwapCooldown = false;
     public int currentLane;
 
-
     // cache
     CharacterController characterController;
 
@@ -49,7 +53,9 @@ public class HeroCharacterController : MonoBehaviour
         // cache
         characterController = GetComponent<CharacterController>();
 
+        // initialise
         currentLane = startingLane;
+        charaControllerDefaultHeight = characterController.height;
     }
 
     // Update is called once per frame
@@ -80,6 +86,20 @@ public class HeroCharacterController : MonoBehaviour
         dashing = true;
         yield return new WaitForSeconds(dashTimeDuration);
         dashing = false;
+    }
+
+    private void HandleBeTiny(bool isTiny)
+    {
+        if (isTiny)
+        {
+            transform.localScale = Vector3.one * tinyScale;
+            characterController.height = charaControllerDefaultHeight * tinyScale;
+        }
+        else
+        {
+            transform.localScale = Vector3.one;
+            characterController.height = charaControllerDefaultHeight;
+        }
     }
 
     private void HandleLaneSwap()
@@ -189,6 +209,13 @@ public class HeroCharacterController : MonoBehaviour
         float val = value.ReadValue<float>();
         Debug.Log("L/R input: " + val);
         laneSwapInput = val;
+    }
+
+    public void BeTinyInput(InputAction.CallbackContext value)
+    {
+        bool isTiny = value.ReadValueAsButton();
+        Debug.Log("Being Tiny: " + isTiny);
+        HandleBeTiny(isTiny);
     }
 
 }

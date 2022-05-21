@@ -33,6 +33,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "BeTiny",
+                    "type": "Value",
+                    "id": "d6c336a6-c1e4-4429-a989-7bd1377e4304",
+                    "expectedControlType": "Digital",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "LaneSwap",
                     "type": "Value",
                     "id": "a83203ad-e9a5-42f9-8305-535302ca0407",
@@ -174,6 +183,28 @@
                     "action": "LaneSwap",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "06260ffd-8ddd-4a58-9593-b5d9dc5134c1",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BeTiny",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3280d097-d691-4ed7-a57d-4de78a0e436e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "BeTiny",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
