@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,14 @@ public class HeroCharacterController : MonoBehaviour
     [Header("Movement")]
     [Tooltip("Velocity on y axis due to gravity")]
     [SerializeField] float forwardSpeed = 10f;
-    [SerializeField] float gravity = -10f;
+    [SerializeField] float gravity = 10f;
+    [SerializeField] float jumpHeight = 10f;
 
     [Header("Collisions and Layers")]
-    [SerializeField] LayerMask groundLayers;
 
     // member variables
     public Vector3 motion;
-    private bool isGrounded;
+    private bool jumping = false;
 
     // cache
     CharacterController characterController;
@@ -30,44 +31,56 @@ public class HeroCharacterController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // reset motion
-        motion = Vector3.zero;
-        GroundCheck();
-        Debug.Log(isGrounded);
+        Debug.Log("isGrounded: " + characterController.isGrounded);
 
-        // gravity
-        if (!isGrounded) { ApplyGravity(ref motion); }
-
-        // forward move
         MoveForward(ref motion);
+        Jump(ref motion);
 
-        // move
-        characterController.Move(motion);
+        ApplyGravity(ref motion);
+
+        characterController.Move(motion * Time.deltaTime);
     }
 
-    private void GroundCheck()
+    private void Jump(ref Vector3 motion)
     {
-        isGrounded = characterController.isGrounded;
-            //Physics.CheckSphere(transform.position, 0.01f, groundLayers, QueryTriggerInteraction.Ignore);
+        if (!jumping || !characterController.isGrounded) { return; }
+        motion.y = Mathf.Sqrt(jumpHeight * gravity);
+        jumping = false;
     }
 
     private void ApplyGravity(ref Vector3 motion)
     {
-        motion.y += gravity * Time.deltaTime;
+        float minGravityPush = -characterController.minMoveDistance;
+
+        // Always keep pushing down to maintain contact
+        if (characterController.isGrounded && motion.y > minGravityPush)
+        {
+            motion.y += minGravityPush;
+        }
+        // Gravity push if not grounded
+        else if (!characterController.isGrounded)
+        {
+            motion.y -= gravity *Time.deltaTime;
+
+            motion.y = Mathf.Clamp(motion.y, -gravity, gravity);
+        }
     }
 
     private void MoveForward(ref Vector3 motion)
     {
-        motion.z += forwardSpeed * Time.deltaTime;
+        motion.z = forwardSpeed;
     }
 
     // input handling
-    public void Jump(InputAction.CallbackContext context)
+    public void JumpInput(InputAction.CallbackContext context)
     {
-        // can only jump if on track
-        if (!isGrounded) { return; }
-
-
+        if (context.started)
+        {
+            Debug.Log("Jump Input");
+            jumping = true;
+        }
     }
+
+
 
 }
