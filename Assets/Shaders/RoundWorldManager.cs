@@ -7,9 +7,9 @@ public class RoundWorldManager : MonoBehaviour
 {
     #region Constants
 
-    private const string BENDING_FEATURE = "_ENABLEROUNDING";
+    private const string ENABLE_ROUNDING = "_ENABLEROUNDING";
 
-    private static readonly int BENDING_AMOUNT =
+    private static readonly int ROUDING_AMOUNT =
       Shader.PropertyToID("_RoundingAmount");
 
     #endregion
@@ -18,15 +18,17 @@ public class RoundWorldManager : MonoBehaviour
     #region Inspector
 
     [SerializeField]
-    [Range(0.005f, 0.1f)]
-    private float bendingAmount = 0.015f;
+    [Range(0.0005f, 0.1f)]
+    private float roundingAmount = 0.005f;
+
+    [SerializeField] private bool roundingEnabled;
 
     #endregion
 
 
     #region Fields
 
-    private float _prevAmount;
+    private float _prevAmount = 0f;
 
     #endregion
 
@@ -36,9 +38,9 @@ public class RoundWorldManager : MonoBehaviour
     private void Awake()
     {
         if (Application.isPlaying)
-            Shader.EnableKeyword(BENDING_FEATURE);
+            Shader.EnableKeyword(ENABLE_ROUNDING);
         else
-            Shader.DisableKeyword(BENDING_FEATURE);
+            Shader.DisableKeyword(ENABLE_ROUNDING);
 
 
         UpdateBendingAmount();
@@ -55,8 +57,17 @@ public class RoundWorldManager : MonoBehaviour
 
     private void Update()
     {
-        if (Math.Abs(_prevAmount - bendingAmount) > Mathf.Epsilon)
+        if (Math.Abs(_prevAmount - roundingAmount) > Mathf.Epsilon)
             UpdateBendingAmount();
+
+        if (!Application.isPlaying)
+        {
+            if (roundingEnabled)
+                Shader.EnableKeyword(ENABLE_ROUNDING);
+            else
+                Shader.DisableKeyword(ENABLE_ROUNDING);
+
+        }
     }
 
     private void OnDisable()
@@ -72,21 +83,21 @@ public class RoundWorldManager : MonoBehaviour
 
     private void UpdateBendingAmount()
     {
-        _prevAmount = bendingAmount;
-        Shader.SetGlobalFloat(BENDING_AMOUNT, bendingAmount);
+        _prevAmount = roundingAmount;
+        Shader.SetGlobalFloat(ROUDING_AMOUNT, roundingAmount);
     }
 
     private static void OnBeginCameraRendering(ScriptableRenderContext ctx,
                                                 Camera cam)
     {
-        cam.cullingMatrix = Matrix4x4.Ortho(-99, 99, -99, 99, 0.001f, 99) *
-                            cam.worldToCameraMatrix;
+        //cam.cullingMatrix = Matrix4x4.Ortho(-99, 99, -99, 99, 0.001f, 99) *
+        //                    cam.worldToCameraMatrix;
     }
 
     private static void OnEndCameraRendering(ScriptableRenderContext ctx,
                                               Camera cam)
     {
-        cam.ResetCullingMatrix();
+        //cam.ResetCullingMatrix();
     }
 
     #endregion
