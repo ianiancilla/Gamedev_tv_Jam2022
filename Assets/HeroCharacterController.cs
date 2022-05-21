@@ -20,8 +20,11 @@ public class HeroCharacterController : MonoBehaviour
 
     // member variables
     public Vector3 motion;
+
+    // states
     private bool jumping = false;
     private bool dashing = false;
+    private bool holdingStill = false;  // if I dash while holding still, I will dash
 
 
     // cache
@@ -87,6 +90,12 @@ public class HeroCharacterController : MonoBehaviour
     private void MoveForward(ref Vector3 motion)
     {
         // move at fwd speed, multiplied if dashing
+        if (holdingStill && !dashing)
+        {
+            motion.z = 0;
+            return;
+        }
+
         motion.z = dashing ? (forwardSpeed * dashSpeedMultiplier) : forwardSpeed;
     }
 
@@ -111,6 +120,14 @@ public class HeroCharacterController : MonoBehaviour
             }
         }
     }
+
+    public void HoldStillInput(InputAction.CallbackContext value)
+    {
+        bool val = value.ReadValueAsButton();
+        Debug.Log("Dash Input: " + val);
+        holdingStill = val;
+    }
+
 
 
 
