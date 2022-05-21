@@ -11,20 +11,33 @@ public class HeroCharacterController : MonoBehaviour
     [Tooltip("Velocity on y axis due to gravity")]
     [SerializeField] float forwardSpeed = 10f;
     [SerializeField] float gravity = 10f;
+    [Space]
     [SerializeField] float jumpHeight = 10f;
+    [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
     [SerializeField] float dashTimeDuration = 0.3f;
+    [Space]
 
+    [Header("Lane swapping")]
+    [SerializeField] Lane[] AvailableLanes;
+    [SerializeField] float laneSwappingCoolDown = 0.2f;
+    [SerializeField] private int startingLane = 1;
+    [SerializeField] private float laneSwappingSpeed = 1f;
 
-    [Header("Collisions and Layers")]
 
     // member variables
-    public Vector3 motion;
+    Vector3 motion;
 
     // states
     private bool jumping = false;
+
     private bool dashing = false;
+
     private bool holdingStill = false;  // if I dash while holding still, I will dash
+
+    private float laneSwapInput = 0f;
+    private bool laneSwapCooldown = false;
+    public int currentLane;
 
 
     // cache
@@ -33,7 +46,10 @@ public class HeroCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // cache
         characterController = GetComponent<CharacterController>();
+
+        currentLane = startingLane;
     }
 
     // Update is called once per frame
@@ -42,6 +58,10 @@ public class HeroCharacterController : MonoBehaviour
         MoveForward(ref motion);
 
         HandleJump(ref motion);
+
+        HandleLaneSwap();
+
+        MoveToTargetX(ref motion);
 
         ApplyGravity(ref motion);
 
@@ -62,6 +82,42 @@ public class HeroCharacterController : MonoBehaviour
         dashing = false;
     }
 
+    private void HandleLaneSwap()
+    {
+        // if there is no moving input, do not start a new swap
+        if (laneSwapInput == 0 || laneSwapCooldown) { return; }
+
+        // if input goes left and you are not in the leftmost alley
+        if (laneSwapInput < 0 && currentLane > 0)
+        {
+            //move left
+            currentLane--;
+        }
+        else if (laneSwapInput > 0 && currentLane < (AvailableLanes.Length -1))
+        {
+            // move right
+            currentLane++;
+        }
+        StartCoroutine(LaneSwapCooldown());
+    }
+
+    private IEnumerator LaneSwapCooldown()
+    {
+        laneSwapCooldown = true;
+        yield return new WaitForSeconds(laneSwappingCoolDown);
+        laneSwapCooldown = false;
+    }
+
+    private void MoveToTargetX(ref Vector3 motion)
+    {
+        float targetX = AvailableLanes[currentLane].xPos;
+        float xOffset = targetX - transform.position.x;
+
+
+        if (Mathf.Abs(xOffset) <= Mathf.Epsilon) { return; }
+
+        motion.x = laneSwappingSpeed * xOffset;
+    }
 
     private void ApplyGravity(ref Vector3 motion)
     {
@@ -128,7 +184,17 @@ public class HeroCharacterController : MonoBehaviour
         holdingStill = val;
     }
 
+    public void LaneSwapInput(InputAction.CallbackContext value)
+    {
+        float val = value.ReadValue<float>();
+        Debug.Log("L/R input: " + val);
+        laneSwapInput = val;
+    }
 
+}
 
-
+[Serializable]
+public class Lane
+{
+    public float xPos = 0;
 }

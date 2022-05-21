@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundingAmount: 0.006
-  roundingEnabled: 1
+  roundingEnabled: 0
 --- !u!4 &430119441
 Transform:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12218324, y: 0.000000028967651, z: -0.0000000035660799, w: 0.9925076}
+  m_LocalRotation: {x: 0.12218324, y: 0.000000028966996, z: -0.0000000035659995, w: 0.9925076}
   m_LocalPosition: {x: 0, y: 2, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1324,7 +1324,14 @@ MonoBehaviour:
   jumpHeight: 3
   dashSpeedMultiplier: 4
   dashTimeDuration: 0.3
-  motion: {x: 0, y: 0, z: 0}
+  AvailableLanes:
+  - xPos: -1
+  - xPos: 0
+  - xPos: 1
+  laneSwappingCoolDown: 0.2
+  startingLane: 1
+  laneSwappingSpeed: 4
+  currentLane: 0
 --- !u!143 &1222370333
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1472,6 +1479,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d38d7540-45a2-4553-aae5-42479eed06ab
     m_ActionName: Player/HoldStill[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1222370332}
+        m_TargetAssemblyTypeName: HeroCharacterController, Assembly-CSharp
+        m_MethodName: LaneSwapInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a83203ad-e9a5-42f9-8305-535302ca0407
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2126,7 +2149,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722740446}
-  m_LocalRotation: {x: 0.000000007450581, y: -5.9760374e-10, z: 1.494016e-10, w: 1}
+  m_LocalRotation: {x: 0.000000007450581, y: -5.982468e-10, z: 1.4956125e-10, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
