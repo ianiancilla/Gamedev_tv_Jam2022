@@ -7,23 +7,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class HeroCharacterController : MonoBehaviour
 {
-    [Header("Movement")]
-    [Tooltip("Velocity on y axis due to gravity")]
-    [SerializeField] float forwardSpeed = 10f;
-    [SerializeField] float gravity = 10f;
-    [Space]
-    [SerializeField] float jumpHeight = 10f;
+    [SerializeField] float forwardSpeed = 3f;
+    [SerializeField] float gravity = 25f;
     [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
     [SerializeField] float dashTimeDuration = 0.3f;
     [Space]
 
-    [Header("Lane swapping")]
-    [SerializeField] Lane[] AvailableLanes;
-    [SerializeField] float laneSwappingCoolDown = 0.2f;
-    [SerializeField] private int startingLane = 1;
-    [SerializeField] private float laneSwappingSpeed = 1f;
-    [Space]
 
     [Header("Tiny State")]
     [SerializeField] [Range (0.1f, 1f)] float tinyScale = .3f;
@@ -34,19 +24,14 @@ public class HeroCharacterController : MonoBehaviour
 
 
     // member variables
-    Vector3 motion;
+    public Vector3 motion;
     float charaControllerDefaultHeight;
 
     // states
-    private bool jumping = false;
-
     private bool dashing = false;
 
     private bool holdingStill = false;  // if I dash while holding still, I will dash
 
-    private float laneSwapInput = 0f;
-    private bool laneSwapCooldown = false;
-    public int currentLane;
 
     // cache
     CharacterController characterController;
@@ -58,7 +43,6 @@ public class HeroCharacterController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         // initialise
-        currentLane = startingLane;
         charaControllerDefaultHeight = characterController.height;
     }
 
@@ -67,22 +51,14 @@ public class HeroCharacterController : MonoBehaviour
     {
         MoveForward(ref motion);
 
-        HandleJump(ref motion);
-
-        HandleLaneSwap();
-
-        MoveToTargetX(ref motion);
-
         ApplyGravity(ref motion);
 
         characterController.Move(motion * Time.deltaTime);
     }
 
-    private void HandleJump(ref Vector3 motion)
+    public void ChangeMotion(Vector3 newMotion)
     {
-        if (!jumping || !characterController.isGrounded) { return; }
-        motion.y = Mathf.Sqrt(jumpHeight * gravity);
-        jumping = false;
+        motion = newMotion;
     }
 
     private IEnumerator HandleDash()
@@ -109,42 +85,6 @@ public class HeroCharacterController : MonoBehaviour
     private void HandleShooting(bool isShooting)
     {
         projectileShooter.EnableShooting(isShooting);
-    }
-    private void HandleLaneSwap()
-    {
-        // if there is no moving input, do not start a new swap
-        if (laneSwapInput == 0 || laneSwapCooldown) { return; }
-
-        // if input goes left and you are not in the leftmost alley
-        if (laneSwapInput < 0 && currentLane > 0)
-        {
-            //move left
-            currentLane--;
-        }
-        else if (laneSwapInput > 0 && currentLane < (AvailableLanes.Length -1))
-        {
-            // move right
-            currentLane++;
-        }
-        StartCoroutine(LaneSwapCooldown());
-    }
-
-    private IEnumerator LaneSwapCooldown()
-    {
-        laneSwapCooldown = true;
-        yield return new WaitForSeconds(laneSwappingCoolDown);
-        laneSwapCooldown = false;
-    }
-
-    private void MoveToTargetX(ref Vector3 motion)
-    {
-        float targetX = AvailableLanes[currentLane].xPos;
-        float xOffset = targetX - transform.position.x;
-
-
-        if (Mathf.Abs(xOffset) <= Mathf.Epsilon) { return; }
-
-        motion.x = laneSwappingSpeed * xOffset;
     }
 
     private void ApplyGravity(ref Vector3 motion)
@@ -184,14 +124,6 @@ public class HeroCharacterController : MonoBehaviour
     }
 
     // input handling
-    public void JumpInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Debug.Log("Jump Input");
-            jumping = true;
-        }
-    }
 
     public void DashInput(InputAction.CallbackContext context)
     {
@@ -212,12 +144,6 @@ public class HeroCharacterController : MonoBehaviour
         holdingStill = val;
     }
 
-    public void LaneSwapInput(InputAction.CallbackContext value)
-    {
-        float val = value.ReadValue<float>();
-        Debug.Log("L/R input: " + val);
-        laneSwapInput = val;
-    }
 
     public void BeTinyInput(InputAction.CallbackContext value)
     {
@@ -231,6 +157,9 @@ public class HeroCharacterController : MonoBehaviour
         Debug.Log("Shooting: " + isShooting);
         HandleShooting(isShooting);
     }
+
+    public float GetGravity() { return gravity; }
+    public float GetForwardSpeed() { return forwardSpeed; }
 
 }
 
