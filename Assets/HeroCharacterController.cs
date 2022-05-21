@@ -23,10 +23,14 @@ public class HeroCharacterController : MonoBehaviour
     [SerializeField] float laneSwappingCoolDown = 0.2f;
     [SerializeField] private int startingLane = 1;
     [SerializeField] private float laneSwappingSpeed = 1f;
+    [Space]
 
     [Header("Tiny State")]
     [SerializeField] [Range (0.1f, 1f)] float tinyScale = .3f;
+    [Space]
 
+    [Header("Shooting")]
+    [SerializeField] ProjectileShooter projectileShooter;
 
 
     // member variables
@@ -102,6 +106,10 @@ public class HeroCharacterController : MonoBehaviour
         }
     }
 
+    private void HandleShooting(bool isShooting)
+    {
+        projectileShooter.EnableShooting(isShooting);
+    }
     private void HandleLaneSwap()
     {
         // if there is no moving input, do not start a new swap
@@ -216,6 +224,12 @@ public class HeroCharacterController : MonoBehaviour
         bool isTiny = value.ReadValueAsButton();
         Debug.Log("Being Tiny: " + isTiny);
         HandleBeTiny(isTiny);
+    }
+    public void ShootingInput(InputAction.CallbackContext value)
+    {
+        bool isShooting = value.ReadValueAsButton();
+        Debug.Log("Shooting: " + isShooting);
+        HandleShooting(isShooting);
     }
 
 }
