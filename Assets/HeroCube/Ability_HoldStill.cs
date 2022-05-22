@@ -7,9 +7,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HeroCharacterController))]
 public class Ability_HoldStill : CharacterAbility
 {
-    //properties
-    [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
-
     // cache
     HeroCharacterController heroController;
 

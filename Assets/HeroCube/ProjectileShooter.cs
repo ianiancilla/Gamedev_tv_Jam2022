@@ -6,10 +6,10 @@ using UnityEngine;
 public class ProjectileShooter : MonoBehaviour
 {
     // cache
-    ParticleSystem particleSystem;
+    ParticleSystem partSystem;
     void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        partSystem = GetComponent<ParticleSystem>();
         EnableShooting(false);
     }
 
@@ -22,11 +22,11 @@ public class ProjectileShooter : MonoBehaviour
     {
         if (newState)
         {
-            particleSystem.Play();
+            partSystem.Play();
         }
         else
         {
-            particleSystem.Stop();
+            partSystem.Stop();
         }
     }
 

@@ -12,14 +12,15 @@ public class HeroCharacterController : MonoBehaviour
     [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
 
-
     // member variables
-    public Vector3 motion;
+    private Vector3 motion;
+
+    private List<CharacterAbility> activeAbilities = new List<CharacterAbility>();
+    public List<CharacterAbility> possibleAbilities = new List<CharacterAbility>();
 
     // states
     public bool Dashing { get; set; } = false;
     public bool HoldingStill { get; set; } = false;  // if I dash while holding still, I will dash
-
 
     // cache
     CharacterController characterController;
@@ -30,28 +31,26 @@ public class HeroCharacterController : MonoBehaviour
         // cache
         characterController = GetComponent<CharacterController>();
 
+        // intialise
+        FindPossibleAbilities(ref possibleAbilities);
+        FindActiveAbilities(ref activeAbilities);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // these calculate necessary movement, while ability scripts
+        // do the same.
+        // These are all stored in the Vector3 motion, which is then
+        // applied via Unity characontroller method
         MoveForward(ref motion);
-
         ApplyGravity(ref motion);
 
         characterController.Move(motion * Time.deltaTime);
     }
-
-    public void ChangeMotion(Vector3 newMotion)
-    {
-        motion = newMotion;
-    }
-
-
-
     private void ApplyGravity(ref Vector3 motion)
     {
-        // no gravity while dashing!
+        // no gravity while dashing
         if (Dashing)
         {
             motion.y = 0;
@@ -59,7 +58,8 @@ public class HeroCharacterController : MonoBehaviour
 
         float minGravityPush = -characterController.minMoveDistance;
 
-        // Always keep pushing down to maintain contact
+        // Always keep pushing down to maintain contact, needed by the
+        // Unity characontroller to see itself as grounded
         if (characterController.isGrounded && motion.y > minGravityPush)
         {
             motion.y += minGravityPush;
@@ -73,22 +73,50 @@ public class HeroCharacterController : MonoBehaviour
         }
     }
 
+    // move at fwd speed, multiplied if dashing
     private void MoveForward(ref Vector3 motion)
     {
-        // move at fwd speed, multiplied if dashing
         if (HoldingStill && !Dashing)
         {
             motion.z = 0;
-            return;
         }
-
-        motion.z = Dashing ? (forwardSpeed * dashSpeedMultiplier) : forwardSpeed;
+        else
+        {
+            motion.z = Dashing ? (forwardSpeed * dashSpeedMultiplier) : forwardSpeed;
+        }
     }
 
-    // input handling
+    public void ChangeMotion(Vector3 newMotion)
+    {
+        motion = newMotion;
+    }
 
+
+    // getters
     public float GetGravity() { return gravity; }
     public float GetForwardSpeed() { return forwardSpeed; }
+    public Vector3 GetMotion() { return motion; }
 
+    // activating and checking abilities
+    public void FindPossibleAbilities(ref List<CharacterAbility> possibleAbilities)
+    {
+        GetComponents(possibleAbilities);
+        Debug.Log(possibleAbilities.Count + " possible abilities on character");
+    }
+
+    public void FindActiveAbilities(ref List<CharacterAbility> activeAbilities)
+    {
+        activeAbilities.Clear();
+
+        foreach (CharacterAbility ability in possibleAbilities)
+        {
+            if (ability.isActiveAndEnabled) { activeAbilities.Add(ability); }
+        }
+        Debug.Log(activeAbilities.Count + " abilities are activated.");
+        foreach (CharacterAbility ability in activeAbilities)
+        {
+            Debug.Log(ability);
+        }
+    }
 }
 

@@ -78,8 +78,8 @@ public class Ability_LaneSwap : CharacterAbility
         float motionX = laneSwappingSpeed * xOffset;
 
         heroController.ChangeMotion(new Vector3(motionX,
-                                                heroController.motion.y,
-                                                heroController.motion.z));
+                                                heroController.GetMotion().y,
+                                                heroController.GetMotion().z));
     }
 
     public void LaneSwapInput(InputAction.CallbackContext value)

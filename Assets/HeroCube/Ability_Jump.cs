@@ -37,9 +37,9 @@ public class Ability_Jump : CharacterAbility
 
         float motionY = Mathf.Sqrt(jumpHeight * heroController.GetGravity());
 
-        heroController.ChangeMotion(new Vector3(heroController.motion.x,
+        heroController.ChangeMotion(new Vector3(heroController.GetMotion().x,
                                                 motionY,
-                                                heroController.motion.z));
+                                                heroController.GetMotion().z));
 
         jumpInput = false;
     }
