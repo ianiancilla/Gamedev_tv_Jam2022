@@ -15,8 +15,8 @@ public class HeroCharacterController : MonoBehaviour
     // member variables
     private Vector3 motion;
 
-    private List<CharacterAbility> activeAbilities = new List<CharacterAbility>();
-    public List<CharacterAbility> possibleAbilities = new List<CharacterAbility>();
+    private List<ICharacterAbility> activeAbilities = new List<ICharacterAbility>();
+    public List<ICharacterAbility> possibleAbilities = new List<ICharacterAbility>();
 
     // states
     public bool Dashing { get; set; } = false;
@@ -48,6 +48,13 @@ public class HeroCharacterController : MonoBehaviour
 
         characterController.Move(motion * Time.deltaTime);
     }
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log(hit.gameObject.name);
+    }
+
     private void ApplyGravity(ref Vector3 motion)
     {
         // no gravity while dashing
@@ -73,7 +80,7 @@ public class HeroCharacterController : MonoBehaviour
         }
     }
 
-    // move at fwd speed, multiplied if dashing
+    // communicate movement speed for this frame, multiplied if dashing
     private void MoveForward(ref Vector3 motion)
     {
         if (HoldingStill && !Dashing)
@@ -98,25 +105,31 @@ public class HeroCharacterController : MonoBehaviour
     public Vector3 GetMotion() { return motion; }
 
     // activating and checking abilities
-    public void FindPossibleAbilities(ref List<CharacterAbility> possibleAbilities)
+    public void FindPossibleAbilities(ref List<ICharacterAbility> possibleAbilities)
     {
         GetComponents(possibleAbilities);
         Debug.Log(possibleAbilities.Count + " possible abilities on character");
     }
 
-    public void FindActiveAbilities(ref List<CharacterAbility> activeAbilities)
+    public void FindActiveAbilities(ref List<ICharacterAbility> activeAbilities)
     {
         activeAbilities.Clear();
 
-        foreach (CharacterAbility ability in possibleAbilities)
+        foreach (ICharacterAbility ability in possibleAbilities)
         {
-            if (ability.isActiveAndEnabled) { activeAbilities.Add(ability); }
+            MonoBehaviour abiAsMonobehaviour = ability as MonoBehaviour;
+            if (abiAsMonobehaviour.isActiveAndEnabled) { activeAbilities.Add(ability); }
         }
-        Debug.Log(activeAbilities.Count + " abilities are activated.");
-        foreach (CharacterAbility ability in activeAbilities)
+
+        // logging
+        string activeAbilitiesNamesForLog = "";
+        foreach (ICharacterAbility ability in activeAbilities)
         {
-            Debug.Log(ability);
+            activeAbilitiesNamesForLog += " " + ability.AbilityName + ",";
         }
+        activeAbilitiesNamesForLog = activeAbilitiesNamesForLog.TrimEnd(',') + ".";
+        Debug.Log(activeAbilities.Count + " abilities are activated:" + activeAbilitiesNamesForLog);
+
     }
 }
 

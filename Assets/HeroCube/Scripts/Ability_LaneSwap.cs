@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_LaneSwap : CharacterAbility
+public class Ability_LaneSwap : MonoBehaviour, ICharacterAbility
 {
     // properties
+    public string AbilityName { get; } = "LaneSwap";
+
     [SerializeField] Lane[] AvailableLanes;
     [SerializeField] float laneSwappingCoolDown = 0.2f;
     [SerializeField] private int startingLane = 1;

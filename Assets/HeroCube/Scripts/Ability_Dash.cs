@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_Dash : CharacterAbility
+public class Ability_Dash : MonoBehaviour, ICharacterAbility
 {
     // properties
+    public string AbilityName { get; } = "Dash";
     [SerializeField] float dashTimeDuration = 0.3f;
 
     // cache
@@ -31,6 +32,9 @@ public class Ability_Dash : CharacterAbility
         if (context.started)
         {
             Debug.Log("Dash Input");
+
+            if (!this.isActiveAndEnabled) { return; }
+
             if (!heroController.Dashing)
             {
                 StartCoroutine(HandleDash());

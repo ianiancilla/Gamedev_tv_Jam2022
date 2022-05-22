@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class Ability_Tiny : CharacterAbility
+public class Ability_Tiny : MonoBehaviour, ICharacterAbility
 {
     //properties
+    public string AbilityName { get; } = "BeTiny";
+
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
 
     // cache
@@ -31,6 +33,8 @@ public class Ability_Tiny : CharacterAbility
 
     private void HandleBeTiny(bool isTiny)
     {
+        if (!this.isActiveAndEnabled) { return; }
+
         if (isTiny)
         {
             transform.localScale = Vector3.one * tinyScaleModifier;
