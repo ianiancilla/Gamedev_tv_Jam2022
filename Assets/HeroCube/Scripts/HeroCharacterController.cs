@@ -52,7 +52,7 @@ public class HeroCharacterController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log(hit.gameObject.name);
+        //Debug.Log(hit.gameObject.name);
     }
 
     private void ApplyGravity(ref Vector3 motion)

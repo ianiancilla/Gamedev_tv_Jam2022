@@ -8,6 +8,9 @@ public class Platform : MonoBehaviour
     // properties
     [SerializeField] float platformZDimension = 3f;
 
+    public IObjectPool<GameObject> platformPool;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +28,7 @@ public class Platform : MonoBehaviour
     {
         if (other.GetComponent<HeroCharacterController>() != null)
         {
-            PlatformSpawner spawner = transform.parent.GetComponent<PlatformSpawner>();
-            if (spawner != null)
-            {
-                spawner.ReleasePlatform(this.gameObject);
-            }
+            platformPool.Release(gameObject);
         }
     }
 

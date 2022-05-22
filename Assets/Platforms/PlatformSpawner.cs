@@ -20,10 +20,10 @@ public class PlatformSpawner : MonoBehaviour
         PlatformPool = new ObjectPool<GameObject>(CreatePlatformObject,
                                                   PositionPlatformOnGet,
                                                   ReleasePlatform,
-                                                  null,
+                                                  DestroyPlatform,
                                                   true,
-                                                  platformsToActivateAtOnce *2,
-                                                  100);
+                                                  platformsToActivateAtOnce,
+                                                  platformsToActivateAtOnce + 2);
 
         SpawnPlatforms();
     }
@@ -45,12 +45,15 @@ public class PlatformSpawner : MonoBehaviour
     {
         GameObject platformObj = Instantiate(platformPrefab);
         platformObj.transform.parent = transform;
+        platformObj.GetComponent<Platform>().platformPool = PlatformPool;
 
         return platformObj;
     }
 
     private void PositionPlatformOnGet(GameObject obj)
     {
+        if (!obj.activeSelf) { obj.SetActive(true); }
+
         if (activePlatforms.Count == 0)
         {
             obj.transform.position = Vector3.zero;
@@ -70,4 +73,8 @@ public class PlatformSpawner : MonoBehaviour
         obj.SetActive(false);
     }
 
+    public void DestroyPlatform(GameObject obj)
+    {
+        Destroy(obj.gameObject);
+    }
 }
