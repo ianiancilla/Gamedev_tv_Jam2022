@@ -8,24 +8,24 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HeroCharacterController))]
 public class Ability_Jump : CharacterAbility
 {
+    //properties
     [SerializeField] float jumpHeight = 10f;
 
     // cache
     HeroCharacterController heroController;
     CharacterController characterController;
 
-    // states
+    // variables
     private bool jumpInput = false;
 
 
-    // Start is called before the first frame update
     void Start()
     {
+        // cache
         heroController = GetComponent<HeroCharacterController>();
         characterController = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         HandleJump();
@@ -52,6 +52,4 @@ public class Ability_Jump : CharacterAbility
             jumpInput = true;
         }
     }
-
-
 }

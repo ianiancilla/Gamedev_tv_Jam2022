@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(HeroCharacterController))]
 public class Ability_LaneSwap : CharacterAbility
 {
+    // properties
     [SerializeField] Lane[] AvailableLanes;
     [SerializeField] float laneSwappingCoolDown = 0.2f;
     [SerializeField] private int startingLane = 1;
@@ -25,19 +26,22 @@ public class Ability_LaneSwap : CharacterAbility
     // Start is called before the first frame update
     void Start()
     {
+        // cache
         heroController = GetComponent<HeroCharacterController>();
 
+        // initialise
         currentLane = startingLane;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        HandleLaneSwap();
+        // decides whether you need to move and where
+        HandleLaneSwapInput();
+        // actually handle the movement
         MoveToTargetX();
     }
 
-    private void HandleLaneSwap()
+    private void HandleLaneSwapInput()
     {
         // if there is no moving input, do not start a new swap
         if (laneSwapInput == 0 || laneSwapCooldown) { return; }
@@ -84,6 +88,10 @@ public class Ability_LaneSwap : CharacterAbility
         Debug.Log("L/R input: " + val);
         laneSwapInput = val;
     }
+}
 
-
+[Serializable]
+public class Lane
+{
+    public float xPos = 0;
 }
