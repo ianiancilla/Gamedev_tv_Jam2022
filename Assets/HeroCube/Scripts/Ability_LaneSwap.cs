@@ -10,6 +10,7 @@ public class Ability_LaneSwap : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "LaneSwap";
+    [SerializeField] public AudioSource BGM { get; }
 
     [SerializeField] Lane[] AvailableLanes;
     [SerializeField] float laneSwappingCoolDown = 0.2f;

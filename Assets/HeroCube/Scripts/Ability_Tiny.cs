@@ -9,6 +9,8 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
     //properties
     public string AbilityName { get; } = "BeTiny";
 
+    [Header("Sounds")]
+    [SerializeField] public AudioSource BGM;
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
 
     // cache

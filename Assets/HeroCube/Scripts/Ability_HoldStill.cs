@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Ability_HoldStill : MonoBehaviour, ICharacterAbility
 {
     public string AbilityName { get; } = "HoldStill";
+    [SerializeField] public AudioSource BGM { get; }
 
     // cache
     HeroCharacterController heroController;

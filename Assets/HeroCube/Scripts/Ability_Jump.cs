@@ -10,6 +10,8 @@ public class Ability_Jump : MonoBehaviour, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "Jump";
+    [SerializeField] public AudioSource BGM { get; }
+
     [SerializeField] float jumpHeight = 10f;
 
     // cache

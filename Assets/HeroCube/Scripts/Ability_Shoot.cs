@@ -9,7 +9,7 @@ public class Ability_Shoot : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Shoot";
-
+    [SerializeField] public AudioSource BGM;
     [SerializeField] ProjectileShooter projectileShooter;
 
     //private void Start()

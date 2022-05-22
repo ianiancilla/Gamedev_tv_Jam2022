@@ -10,6 +10,9 @@ public class Ability_Dash : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Dash";
+    [SerializeField] public AudioSource BGM { get; }
+
+
     [SerializeField] float dashTimeDuration = 0.3f;
 
     // cache
