@@ -29,9 +29,10 @@ public class Platform : MonoBehaviour
     public List<GameObject> groundTiles = new List<GameObject>();
     public List<GameObject> obstacleTiles = new List<GameObject>();
 
-    public int NumObstacles { get; set; } = 1;
+    public PlatformSpawner spawner;
+    bool initialised = false;
 
-    private void Awake()
+    public void InitialisePlatform()
     {
         platformZDimension = platformDimensionInTilesXZ.y;
 
@@ -46,6 +47,9 @@ public class Platform : MonoBehaviour
 
         InitialiseTilePositions();
         GenerateTilesGround();
+
+        initialised = true;
+
         RandomisePlatform();
     }
 
@@ -84,6 +88,7 @@ public class Platform : MonoBehaviour
 
     void RandomisePlatform()
     {
+        if (!initialised) { return; }
         RemoveObstacles();
         GenerateRandomObstacles();
     }
@@ -100,7 +105,7 @@ public class Platform : MonoBehaviour
 
     private void GenerateRandomObstacles()
     {
-        for (int i = 0; i < NumObstacles; i++)
+        for (int i = 0; i < spawner.CurrentNumObstaclesOnSpawnedPlatform; i++)
         {
             int randIndex;
             // select a ranom obstacle from available ones

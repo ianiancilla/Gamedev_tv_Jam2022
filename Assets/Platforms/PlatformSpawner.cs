@@ -9,11 +9,13 @@ public class PlatformSpawner : MonoBehaviour
     // properties
     [SerializeField] GameObject platformPrefab;
     [SerializeField] int platformsToActivateAtOnce = 10;
+    [SerializeField] int numObstaclesPerPlatform = 1;
+    [SerializeField] int numPlatformsWithNoObstaclesAtStart = 2;
     
     // variables
     public IObjectPool<GameObject> PlatformPool { get; private set; }
     private List<GameObject> activePlatforms = new List<GameObject>();
-
+    public int CurrentNumObstaclesOnSpawnedPlatform { get; private set; } = 0;
 
     private void Awake()
     {
@@ -36,6 +38,10 @@ public class PlatformSpawner : MonoBehaviour
     {
         while (activePlatforms.Count < platformsToActivateAtOnce)
         {
+            if (activePlatforms.Count == numPlatformsWithNoObstaclesAtStart)
+            {
+                CurrentNumObstaclesOnSpawnedPlatform = numObstaclesPerPlatform;
+            }
             activePlatforms.Add(PlatformPool.Get());
         }
     }
@@ -45,7 +51,11 @@ public class PlatformSpawner : MonoBehaviour
     {
         GameObject platformObj = Instantiate(platformPrefab);
         platformObj.transform.parent = transform;
-        platformObj.GetComponent<Platform>().platformPool = PlatformPool;
+        Platform platComponent = platformObj.GetComponent<Platform>();
+        platComponent.spawner = this;
+        platComponent.platformPool = PlatformPool;
+
+        platComponent.InitialisePlatform();
 
         return platformObj;
     }
