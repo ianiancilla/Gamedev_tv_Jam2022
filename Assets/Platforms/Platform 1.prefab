@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db415a9c0729f5a4b918b838d3349a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformDimensionInTilesXZ: {x: 3, y: 3}
+  platformDimensionInTilesXZ: {x: 3, y: 4}
   backLeftmostTilePosition: {x: -1, y: -0.5, z: 0}
   obstacleOptions:
   - {fileID: 1988280624159436037, guid: 1743a4fc654ad8e4f98bf15d554a8e69, type: 3}
   groundTilePrefab: {fileID: 1988280624159436037, guid: 85cac578b2681c44393316d75ddade0f, type: 3}
+  groundTiles: []
+  obstacleTiles: []
 --- !u!65 &1042634827
 BoxCollider:
   m_ObjectHideFlags: 0

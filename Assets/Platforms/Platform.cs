@@ -9,19 +9,20 @@ public class Platform : MonoBehaviour
     // disclaimer: works only with building blocks which are 1x1x1 unit cubes.
     // can easily be modified to do otherwise but no time now
 
-    // works for 3x3 platforms, if this needs to be variable, BoxCollider on Platform
-    // parent needs to be centered based on platform length+3(or so)
-
     // properties
-    [SerializeField] Vector2Int platformDimensionInTilesXZ = new Vector2Int(3, 3);
-    [SerializeField] Vector3 backLeftmostTilePosition = new Vector3(-1f, -0.5f, 0);    // TODO should tie in with lane number, no time
+    [SerializeField] Vector2Int platformDimensionInTilesXZ = new Vector2Int(3, 4);
+    [SerializeField] Vector3 backLeftmostTilePosition = new Vector3(-1f, -0.5f, 0);    
+                                    // TODO should tie in with lane number, no time
 
 
     [SerializeField] GameObject[] obstacleOptions;
     [SerializeField] GameObject groundTilePrefab;
 
+    
     // variables
-    public IObjectPool<GameObject> platformPool;   //this is set to the pool that it gets generated in, when platform is created
+    public IObjectPool<GameObject> platformPool;   //this is set to the pool that
+                                                   //it gets generated in, when platform
+                                                   //is created
 
     float platformZDimension;
     List<Vector3> groundTilesPositions = new List<Vector3>();
@@ -33,6 +34,15 @@ public class Platform : MonoBehaviour
     private void Awake()
     {
         platformZDimension = platformDimensionInTilesXZ.y;
+
+        BoxCollider triggerDespawner = GetComponent<BoxCollider>(); // the box collider which
+                                                                    // triggers releasing platform
+                                                                    // to pool when the player
+                                                                    // crosses it
+        triggerDespawner.center = new Vector3(transform.position.x,
+                                              transform.position.y,
+                                              transform.position.z + platformZDimension + 5f);
+
 
         InitialiseTilePositions();
         GenerateTilesGround();
