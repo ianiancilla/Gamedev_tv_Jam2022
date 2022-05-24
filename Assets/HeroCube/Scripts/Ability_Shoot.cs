@@ -9,13 +9,18 @@ public class Ability_Shoot : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Shoot";
-    [SerializeField] public AudioSource BGM;
+
+    [Header("Mechanics")]
     [SerializeField] ProjectileShooter projectileShooter;
 
-    //private void Start()
-    //{
-    //    // just need it so the Monobehaviour can have an activation toggle T_T
-    //}
+
+    [Header("Feedback")]
+    [SerializeField] public AudioSource BGM;
+
+    private void Start()
+    {
+        // just need it so the Monobehaviour can have an activation toggle T_T
+    }
 
     private void HandleShooting(bool isShooting)
     {

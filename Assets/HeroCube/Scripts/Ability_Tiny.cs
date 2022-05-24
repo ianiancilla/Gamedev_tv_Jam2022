@@ -9,9 +9,13 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
     //properties
     public string AbilityName { get; } = "BeTiny";
 
-    [Header("Sounds")]
-    [SerializeField] public AudioSource BGM;
+    [Header("Mechanics")]
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
+
+
+    [Header("Feedback")]
+    [SerializeField] public AudioSource BGM;
+
 
     // cache
     CharacterController characterController;
@@ -27,10 +31,6 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
 
         // initialise
         charaControllerDefaultHeight = characterController.height;
-    }
-
-    void FixedUpdate()
-    {
     }
 
     private void HandleBeTiny(bool isTiny)

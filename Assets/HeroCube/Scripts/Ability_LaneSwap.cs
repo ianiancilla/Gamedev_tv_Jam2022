@@ -10,12 +10,16 @@ public class Ability_LaneSwap : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "LaneSwap";
-    [SerializeField] public AudioSource BGM { get; }
 
+    [Header("Mechanics")]
     [SerializeField] Lane[] AvailableLanes;
     [SerializeField] float laneSwappingCoolDown = 0.2f;
     [SerializeField] private int startingLane = 1;
     [SerializeField] private float laneSwappingSpeed = 1f;
+
+    [Header("Feedback")]
+    [SerializeField] public AudioSource BGM;
+
 
     // cache
     HeroCharacterController heroController;
