@@ -21,8 +21,6 @@ public class ActiveAbilityManager : MonoBehaviour
     {
         // intialise
         Initialise();
-
-        StartCoroutine(testSwapping());
     }
 
     private void Initialise()
@@ -112,7 +110,7 @@ public class ActiveAbilityManager : MonoBehaviour
     }
 
     // test ability swapper
-    IEnumerator testSwapping()
+    IEnumerator TestSwapping()
     {
         while (true)
         {

@@ -11,6 +11,8 @@ public class HeroCharacterController : MonoBehaviour
     [SerializeField] float gravity = 25f;
     [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
+    [Space]
+    [SerializeField] float zAfterLedgeFallToReset = 3f;
 
     // member variables
     private Vector3 motion;
@@ -41,12 +43,6 @@ public class HeroCharacterController : MonoBehaviour
         ApplyGravity(ref motion);
 
         characterController.Move(motion * Time.deltaTime);
-    }
-
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        //Debug.Log(hit.gameObject.name);
     }
 
     private void ApplyGravity(ref Vector3 motion)
@@ -91,12 +87,22 @@ public class HeroCharacterController : MonoBehaviour
     {
         motion = newMotion;
     }
+    public void PickUpFromFall()
+    {
+        float currentY = transform.position.y;
+        float offset = zAfterLedgeFallToReset - currentY;
 
+        ChangeMotion(new Vector3(motion.x, 
+                                 15,
+                                 motion.z));
+
+    }
 
     // getters
     public float GetGravity() { return gravity; }
     public float GetForwardSpeed() { return forwardSpeed; }
     public Vector3 GetMotion() { return motion; }
+
 
 }
 
