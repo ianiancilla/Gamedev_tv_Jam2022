@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_Dash : MonoBehaviour, ICharacterAbility
+public class Ability_Dash : CharaAbilityBase, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Dash";
@@ -15,9 +15,6 @@ public class Ability_Dash : MonoBehaviour, ICharacterAbility
 
     [Header("Mechanics")]
     [SerializeField] float dashTimeDuration = 0.3f;
-
-    [Header("Feedback")]
-    [SerializeField] public AudioSource BGM;
 
     // cache
     HeroCharacterController heroController;

@@ -6,6 +6,7 @@ public class ActiveAbilityManager : MonoBehaviour
 {
     // properties
     [SerializeField] List<abiType> startingAbilities;
+    [SerializeField] int maxAbilityNumber = 2;
 
     // variables
     private List<ICharacterAbility> possibleAbilities = new List<ICharacterAbility>();
@@ -21,6 +22,7 @@ public class ActiveAbilityManager : MonoBehaviour
         // intialise
         Initialise();
 
+        StartCoroutine(testSwapping());
     }
 
     private void Initialise()
@@ -36,16 +38,17 @@ public class ActiveAbilityManager : MonoBehaviour
         {
             SetAbilityActive(type, true);
         }
+        RefreshActiveAbilitiesList();
     }
 
     // activating and checking abilities
-    public void FindPossibleAbilities(ref List<ICharacterAbility> possibleAbilities)
+    private void FindPossibleAbilities(ref List<ICharacterAbility> possibleAbilities)
     {
         GetComponents(possibleAbilities);
         Debug.Log(possibleAbilities.Count + " possible abilities on character");
     }
 
-    public void FindActiveAbilities(ref List<ICharacterAbility> activeAbilities)
+    private void RefreshActiveAbilitiesList()
     {
         activeAbilities.Clear();
 
@@ -66,7 +69,7 @@ public class ActiveAbilityManager : MonoBehaviour
 
     }
 
-    public void SetAbilityActive(abiType abiType, bool newState)
+    private void SetAbilityActive(abiType abiType, bool newState)
     {
         foreach (ICharacterAbility ability in possibleAbilities)
         {
@@ -76,45 +79,47 @@ public class ActiveAbilityManager : MonoBehaviour
                 abiAsMonobehaviour.enabled = newState;
                 break;
             }
-            Debug.Log("Could not deactivate " + abiType);
         }
-        FindActiveAbilities(ref activeAbilities);
     }
 
+    public void ChangeAbility()
+    {
+        // find and activate new ability
+        SetAbilityActive(RandomiseNewAbility(), true);
 
+        // remove an old ability if limit was reached
+        if (activeAbilities.Count >= maxAbilityNumber)
+        {
+            int randomIndex = Random.Range(0, activeAbilities.Count);
+            abiType type = activeAbilities[randomIndex].AbilityType;
+            SetAbilityActive(type, false);
+        }
+        RefreshActiveAbilitiesList();
+    }
 
-    //private void InitialiseAbilities()
-    //{
-    //    abilityComponents = GetComponents<ICharacterAbility>() as MonoBehaviour[];
-    //    Debug.Log(GetComponents<ICharacterAbility>() as MonoBehaviour[]);
-    //    Debug.Log(abilityComponents.Length + "cmponenti trovati");
+    private abiType RandomiseNewAbility()
+    {
+        var abilitiesToChooseFrom = new List<ICharacterAbility>(possibleAbilities);
+        foreach (ICharacterAbility ability in activeAbilities)
+        {
+            abilitiesToChooseFrom.Remove(ability);
+        }
+        
+        int randomIndex = Random.Range(0, abilitiesToChooseFrom.Count);
+        ICharacterAbility nextAbility = abilitiesToChooseFrom[randomIndex];
 
-    //    existingAbilities = new abiType[abilityComponents.Length];
+        return nextAbility.AbilityType;
+    }
 
-    //    // deactivate all abilities and record possible ones
-    //    for (int i = 0; i < abilityComponents.Length; i++)
-    //    {
-    //        existingAbilities[i] = (abilityComponents[i] as ICharacterAbility).AbilityType;
-    //        abilityComponents[i].enabled = false;
-    //    }
-
-    //    //// reactivate only abilities set to be enabled
-    //    //foreach (abiType type in activeAbilities)
-    //    //{
-    //    //    SetAbilityActive(type, true);
-    //    //}
-    //}
-
-    //private void SetAbilityActive(abiType abiType, bool activeState)
-    //{
-    //    foreach(MonoBehaviour abiComponent in abilityComponents)
-    //    {
-    //        if ((abiComponent as ICharacterAbility).AbilityType == abiType)
-    //        {
-    //            abiComponent.enabled = activeState;
-    //        }
-    //    }
-    //}
+    // test ability swapper
+    IEnumerator testSwapping()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4f);
+            ChangeAbility();
+        }
+    }
 }
 
 public enum abiType

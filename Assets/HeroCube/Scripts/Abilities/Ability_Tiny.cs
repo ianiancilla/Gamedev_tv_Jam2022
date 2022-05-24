@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class Ability_Tiny : MonoBehaviour, ICharacterAbility
+public class Ability_Tiny : CharaAbilityBase, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "BeTiny";
@@ -13,11 +13,6 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
 
     [Header("Mechanics")]
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
-
-
-    [Header("Feedback")]
-    [SerializeField] public AudioSource BGM;
-
 
     // cache
     CharacterController characterController;

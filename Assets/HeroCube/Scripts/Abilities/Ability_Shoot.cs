@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_Shoot : MonoBehaviour, ICharacterAbility
+public class Ability_Shoot : CharaAbilityBase, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Shoot";
@@ -13,10 +13,6 @@ public class Ability_Shoot : MonoBehaviour, ICharacterAbility
 
     [Header("Mechanics")]
     [SerializeField] ProjectileShooter projectileShooter;
-
-
-    [Header("Feedback")]
-    [SerializeField] public AudioSource BGM;
 
     private void Start()
     {

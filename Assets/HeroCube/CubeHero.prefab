@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1135002705708355130}
   - component: {fileID: 1135002705708355128}
   - component: {fileID: 1135002705708355078}
+  - component: {fileID: 5506641123393956360}
   - component: {fileID: 44738638328874199}
   - component: {fileID: 1135002705708355079}
   - component: {fileID: 1135002705708355077}
@@ -242,6 +243,18 @@ MonoBehaviour:
   forwardSpeed: 3
   gravity: 25
   dashSpeedMultiplier: 4
+--- !u!114 &5506641123393956360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135002705708355132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36033d58cc18884cb9505f89e40bb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &44738638328874199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2628cbb56ee06542aac068e8b3b8727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingAbilities: 
+  maxAbilityNumber: 2
 --- !u!114 &1135002705708355079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,8 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4002e3e7a82ba24993aa4658d883d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 2.5
   BGM: {fileID: 0}
+  volume: 0.2
+  jumpHeight: 2.5
 --- !u!114 &1135002705708355077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf299a8727b44040a513e7d0028338a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGM: {fileID: 0}
+  volume: 0.2
   AvailableLanes:
   - xPos: -1
   - xPos: 0
@@ -287,7 +305,6 @@ MonoBehaviour:
   laneSwappingCoolDown: 0.2
   startingLane: 1
   laneSwappingSpeed: 8
-  BGM: {fileID: 0}
 --- !u!114 &1135002705708355076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,8 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651af601c8abac34a8a4b3228ce30db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashTimeDuration: 0.3
   BGM: {fileID: 0}
+  volume: 0.2
+  dashTimeDuration: 0.3
 --- !u!114 &1135002705708355075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,8 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9845b55b5d154943b8490f5dd2ad370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tinyScaleModifier: 0.3
   BGM: {fileID: 0}
+  volume: 0.2
+  tinyScaleModifier: 0.3
 --- !u!114 &1135002705708355074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
+  volume: 0.2
 --- !u!114 &1135002705708355073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,8 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd86a571c657a8c40a68af371ceb76d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileShooter: {fileID: 1135002707602111451}
   BGM: {fileID: 0}
+  volume: 0.2
+  projectileShooter: {fileID: 1135002707602111451}
 --- !u!1 &1135002706749845620
 GameObject:
   m_ObjectHideFlags: 0
