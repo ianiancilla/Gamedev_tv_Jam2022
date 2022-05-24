@@ -8,6 +8,8 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "BeTiny";
+    public abiType AbilityType { get; } = abiType.Tiny;
+
 
     [Header("Mechanics")]
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
@@ -35,7 +37,7 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
 
     private void HandleBeTiny(bool isTiny)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
 
         if (isTiny)
         {

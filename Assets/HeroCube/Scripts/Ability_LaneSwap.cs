@@ -10,6 +10,7 @@ public class Ability_LaneSwap : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "LaneSwap";
+    public abiType AbilityType { get; } = abiType.LaneSwap;
 
     [Header("Mechanics")]
     [SerializeField] Lane[] AvailableLanes;

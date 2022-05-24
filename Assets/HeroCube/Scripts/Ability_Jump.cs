@@ -10,6 +10,8 @@ public class Ability_Jump : MonoBehaviour, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "Jump";
+    public abiType AbilityType { get; } = abiType.Jump;
+
 
     [Header("Mechanics")]
     [SerializeField] float jumpHeight = 10f;

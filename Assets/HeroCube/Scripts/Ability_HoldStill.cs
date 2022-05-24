@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 public class Ability_HoldStill : MonoBehaviour, ICharacterAbility
 {
     public string AbilityName { get; } = "HoldStill";
+    public abiType AbilityType { get; } = abiType.HoldStill;
+
 
     [Header("Feedback")]
     [SerializeField] public AudioSource BGM;
@@ -24,7 +26,7 @@ public class Ability_HoldStill : MonoBehaviour, ICharacterAbility
 
     private void HandleHoldStill(bool holdingStill)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
         heroController.HoldingStill = holdingStill;
     }
 

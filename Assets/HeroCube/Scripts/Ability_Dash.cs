@@ -10,6 +10,8 @@ public class Ability_Dash : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Dash";
+    public abiType AbilityType { get; } = abiType.Dash;
+
 
     [Header("Mechanics")]
     [SerializeField] float dashTimeDuration = 0.3f;
@@ -38,7 +40,7 @@ public class Ability_Dash : MonoBehaviour, ICharacterAbility
         {
             Debug.Log("Dash Input");
 
-            if (!this.isActiveAndEnabled) { return; }
+            if (!this.enabled) { return; }
 
             if (!heroController.Dashing)
             {

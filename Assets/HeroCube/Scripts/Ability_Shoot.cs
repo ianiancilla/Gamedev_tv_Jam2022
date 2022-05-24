@@ -9,6 +9,7 @@ public class Ability_Shoot : MonoBehaviour, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Shoot";
+    public abiType AbilityType { get; } = abiType.Shoot;
 
     [Header("Mechanics")]
     [SerializeField] ProjectileShooter projectileShooter;
@@ -24,7 +25,7 @@ public class Ability_Shoot : MonoBehaviour, ICharacterAbility
 
     private void HandleShooting(bool isShooting)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
         projectileShooter.EnableShooting(isShooting);
     }
 
