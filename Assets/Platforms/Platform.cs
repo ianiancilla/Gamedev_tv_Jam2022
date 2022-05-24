@@ -10,43 +10,42 @@ public class Platform : MonoBehaviour
     // can easily be modified to do otherwise but no time now
 
     // properties
-    [SerializeField] Vector2Int platformDimensionInTilesXZ = new Vector2Int(3, 4);
-    [SerializeField] Vector3 backLeftmostTilePosition = new Vector3(-1f, -0.5f, 0);    
+    //[SerializeField] Vector2Int platformDimensionInTilesXZ = new Vector2Int(3, 4);
+    [SerializeField] int platformZDimension = 4;
+    [SerializeField] Vector3 backCentrePosition = new Vector3(-1f, -0.5f, 0);    
                                     // TODO should tie in with lane number, no time
 
-
+    [Space]
+    [Header("Prefabs")]
+    [SerializeField] GameObject groundRowPrefab;
     [SerializeField] GameObject[] obstacleOptions;
-    [SerializeField] GameObject groundTilePrefab;
 
-    
     // variables
     public IObjectPool<GameObject> platformPool;   //this is set to the pool that
                                                    //it gets generated in, when platform
                                                    //is created
 
-    float platformZDimension;
-    List<Vector3> groundTilesPositions = new List<Vector3>();
-    public List<GameObject> groundTiles = new List<GameObject>();
-    public List<GameObject> obstacleTiles = new List<GameObject>();
+    List<Vector3> rowsPositions = new List<Vector3>();
+    List<GameObject> groundRow = new List<GameObject>();
+    List<GameObject> obstacleRow = new List<GameObject>();
 
-    public PlatformSpawner spawner;
+    [HideInInspector] public PlatformSpawner spawner;
+
     bool initialised = false;
 
     public void InitialisePlatform()
     {
-        platformZDimension = platformDimensionInTilesXZ.y;
-
         BoxCollider triggerDespawner = GetComponent<BoxCollider>(); // the box collider which
                                                                     // triggers releasing platform
                                                                     // to pool when the player
                                                                     // crosses it
         triggerDespawner.center = new Vector3(transform.position.x,
                                               transform.position.y,
-                                              transform.position.z + platformZDimension + 5f);
+                                              transform.position.z + (float)(platformZDimension) + 5f);
 
 
-        InitialiseTilePositions();
-        GenerateTilesGround();
+        InitialiseRowPositions();
+        GenerateRowsGround();
 
         initialised = true;
 
@@ -58,30 +57,27 @@ public class Platform : MonoBehaviour
         RandomisePlatform();
     }
 
-    private void InitialiseTilePositions()
+    private void InitialiseRowPositions()
     {
-        for (int x = 0; x < platformDimensionInTilesXZ.x; x++)
+        for (int z = 0; z < platformZDimension; z++)
         {
-            for (int z = 0; z < platformDimensionInTilesXZ.y; z++)
-            {
-                Vector3 position = new Vector3(backLeftmostTilePosition.x + x,
-                                               backLeftmostTilePosition.y,
-                                               backLeftmostTilePosition.z + z);
-                groundTilesPositions.Add(position);
-            }
+            Vector3 position = new Vector3(backCentrePosition.x,
+                                           backCentrePosition.y,
+                                           backCentrePosition.z + z);
+            rowsPositions.Add(position);
         }
     }
 
-    private void GenerateTilesGround()
+    private void GenerateRowsGround()
     {
-        foreach (Vector3 position in groundTilesPositions)
+        foreach (Vector3 position in rowsPositions)
         {
-            GameObject newTile = CreateTileAtPosition(groundTilePrefab, position);
-            groundTiles.Add(newTile);
+            GameObject newRow = CreateRowAtPosition(groundRowPrefab, position);
+            groundRow.Add(newRow);
         }
     }
 
-    private GameObject CreateTileAtPosition(GameObject prefab, Vector3 position)
+    private GameObject CreateRowAtPosition(GameObject prefab, Vector3 position)
     {
         return Instantiate(prefab, position, Quaternion.identity, this.transform);
     }
@@ -95,12 +91,12 @@ public class Platform : MonoBehaviour
 
     private void RemoveObstacles()
     {
-        foreach (GameObject obstacle in obstacleTiles)
+        foreach (GameObject obstacle in obstacleRow)
         {
-            CreateTileAtPosition(groundTilePrefab, obstacle.transform.position);
+            CreateRowAtPosition(groundRowPrefab, obstacle.transform.position);
             Destroy(obstacle);
         }
-        obstacleTiles.Clear();
+        obstacleRow.Clear();
     }
 
     private void GenerateRandomObstacles()
@@ -112,20 +108,20 @@ public class Platform : MonoBehaviour
             randIndex = UnityEngine.Random.Range(0, obstacleOptions.Length);
             GameObject obstaclePrefab = obstacleOptions[randIndex];
 
-            // select a random tile
-            randIndex = UnityEngine.Random.Range(0, groundTiles.Count);
-            GameObject tileToRemove = groundTiles[randIndex];
+            // select a random row
+            randIndex = UnityEngine.Random.Range(0, groundRow.Count);
+            GameObject rowToRemove = groundRow[randIndex];
 
             // find position
-            Vector3 position = tileToRemove.transform.position;
+            Vector3 position = rowToRemove.transform.position;
 
-            // remove tile from list and destroy it
-            groundTiles.Remove(tileToRemove);
-            Destroy(tileToRemove);
+            // remove row from list and destroy it
+            groundRow.Remove(rowToRemove);
+            Destroy(rowToRemove);
 
             // create obstacle and add to list
-            GameObject obstacle = CreateTileAtPosition(obstaclePrefab, position);
-            obstacleTiles.Add(obstacle);
+            GameObject obstacle = CreateRowAtPosition(obstaclePrefab, position);
+            obstacleRow.Add(obstacle);
         }
     }
 

@@ -45,15 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db415a9c0729f5a4b918b838d3349a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformDimensionInTilesXZ: {x: 3, y: 3}
-  backLeftmostTilePosition: {x: -1, y: -0.5, z: 0}
+  platformZDimension: 4
+  backCentrePosition: {x: -1, y: -0.5, z: 0}
+  groundRowPrefab: {fileID: 7012441230949577812, guid: ff878fc3ba8b68f4ebff29023f2b6096, type: 3}
   obstacleOptions:
-  - {fileID: 8141602367450062135, guid: f5dcb2864785067499fb5352236c746c, type: 3}
-  - {fileID: 8141602367450062135, guid: 62f372b38764e7d4182644f50833f59e, type: 3}
   - {fileID: 8141602367450062135, guid: 0b25874895a75e44bb530158f314e1f8, type: 3}
-  groundTilePrefab: {fileID: 1988280624159436037, guid: 85cac578b2681c44393316d75ddade0f, type: 3}
-  groundTiles: []
-  obstacleTiles: []
+  - {fileID: 8141602367450062135, guid: 0b25874895a75e44bb530158f314e1f8, type: 3}
+  - {fileID: 8141602367450062135, guid: 0b25874895a75e44bb530158f314e1f8, type: 3}
+  - {fileID: 7012441230949577812, guid: 66dfbed1cc3f5cb4797ca444e0ca9da9, type: 3}
+  - {fileID: 7012441230949577812, guid: c91d955295bf0084dabed4a4e41350b4, type: 3}
+  - {fileID: 7012441230949577812, guid: bc69dec30882745448c2b506293a4dd4, type: 3}
+  - {fileID: 7012441230949577812, guid: e8a510caff7edca488405c2babf8b709, type: 3}
+  - {fileID: 7012441230949577812, guid: 07e3d9510fd560642b1e7dfd28ae5cd9, type: 3}
+  - {fileID: 7012441230949577812, guid: f58194471a29ca54a8273caf415ea3db, type: 3}
+  - {fileID: 8141602367450062135, guid: 0b25874895a75e44bb530158f314e1f8, type: 3}
   spawner: {fileID: 0}
 --- !u!65 &1042634827
 BoxCollider:
