@@ -5,21 +5,23 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_Shoot : MonoBehaviour, ICharacterAbility
+public class Ability_Shoot : CharaAbilityBase, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "Shoot";
-    [SerializeField] public AudioSource BGM;
+    public abiType AbilityType { get; } = abiType.Shoot;
+
+    [Header("Mechanics")]
     [SerializeField] ProjectileShooter projectileShooter;
 
-    //private void Start()
-    //{
-    //    // just need it so the Monobehaviour can have an activation toggle T_T
-    //}
+    private void Start()
+    {
+        // just need it so the Monobehaviour can have an activation toggle T_T
+    }
 
     private void HandleShooting(bool isShooting)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
         projectileShooter.EnableShooting(isShooting);
     }
 

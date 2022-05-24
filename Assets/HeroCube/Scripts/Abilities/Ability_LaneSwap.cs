@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_LaneSwap : MonoBehaviour, ICharacterAbility
+public class Ability_LaneSwap : CharaAbilityBase, ICharacterAbility
 {
     // properties
     public string AbilityName { get; } = "LaneSwap";
-    [SerializeField] public AudioSource BGM { get; }
+    public abiType AbilityType { get; } = abiType.LaneSwap;
 
+    [Header("Mechanics")]
     [SerializeField] Lane[] AvailableLanes;
     [SerializeField] float laneSwappingCoolDown = 0.2f;
     [SerializeField] private int startingLane = 1;

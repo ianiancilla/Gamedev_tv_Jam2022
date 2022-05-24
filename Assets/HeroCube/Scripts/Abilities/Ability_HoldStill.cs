@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_HoldStill : MonoBehaviour, ICharacterAbility
+public class Ability_HoldStill : CharaAbilityBase, ICharacterAbility
 {
     public string AbilityName { get; } = "HoldStill";
-    [SerializeField] public AudioSource BGM { get; }
+    public abiType AbilityType { get; } = abiType.HoldStill;
 
     // cache
     HeroCharacterController heroController;
@@ -21,7 +21,7 @@ public class Ability_HoldStill : MonoBehaviour, ICharacterAbility
 
     private void HandleHoldStill(bool holdingStill)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
         heroController.HoldingStill = holdingStill;
     }
 

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ICharacterAbility
 {
     string AbilityName { get; }
+    abiType AbilityType { get; }
 }

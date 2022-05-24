@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(HeroCharacterController))]
-public class Ability_Jump : MonoBehaviour, ICharacterAbility
+public class Ability_Jump : CharaAbilityBase, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "Jump";
-    [SerializeField] public AudioSource BGM { get; }
+    public abiType AbilityType { get; } = abiType.Jump;
 
+
+    [Header("Mechanics")]
     [SerializeField] float jumpHeight = 10f;
 
     // cache

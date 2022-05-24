@@ -93,7 +93,8 @@ public class Platform : MonoBehaviour
     {
         foreach (GameObject obstacle in obstacleRow)
         {
-            CreateRowAtPosition(groundRowPrefab, obstacle.transform.position);
+            var newRow = CreateRowAtPosition(groundRowPrefab, obstacle.transform.position);
+            groundRow.Add(newRow);
             Destroy(obstacle);
         }
         obstacleRow.Clear();

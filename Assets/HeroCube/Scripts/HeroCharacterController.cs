@@ -11,12 +11,12 @@ public class HeroCharacterController : MonoBehaviour
     [SerializeField] float gravity = 25f;
     [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
+    [Space]
+    [SerializeField] float zAfterLedgeFallToReset = 3f;
 
     // member variables
     private Vector3 motion;
 
-    private List<ICharacterAbility> activeAbilities = new List<ICharacterAbility>();
-    public List<ICharacterAbility> possibleAbilities = new List<ICharacterAbility>();
 
     // states
     public bool Dashing { get; set; } = false;
@@ -30,10 +30,6 @@ public class HeroCharacterController : MonoBehaviour
     {
         // cache
         characterController = GetComponent<CharacterController>();
-
-        // intialise
-        FindPossibleAbilities(ref possibleAbilities);
-        FindActiveAbilities(ref activeAbilities);
     }
 
     // Update is called once per frame
@@ -47,12 +43,6 @@ public class HeroCharacterController : MonoBehaviour
         ApplyGravity(ref motion);
 
         characterController.Move(motion * Time.deltaTime);
-    }
-
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        //Debug.Log(hit.gameObject.name);
     }
 
     private void ApplyGravity(ref Vector3 motion)
@@ -97,39 +87,22 @@ public class HeroCharacterController : MonoBehaviour
     {
         motion = newMotion;
     }
+    public void PickUpFromFall()
+    {
+        float currentY = transform.position.y;
+        float offset = zAfterLedgeFallToReset - currentY;
 
+        ChangeMotion(new Vector3(motion.x, 
+                                 15,
+                                 motion.z));
+
+    }
 
     // getters
     public float GetGravity() { return gravity; }
     public float GetForwardSpeed() { return forwardSpeed; }
     public Vector3 GetMotion() { return motion; }
 
-    // activating and checking abilities
-    public void FindPossibleAbilities(ref List<ICharacterAbility> possibleAbilities)
-    {
-        GetComponents(possibleAbilities);
-        Debug.Log(possibleAbilities.Count + " possible abilities on character");
-    }
 
-    public void FindActiveAbilities(ref List<ICharacterAbility> activeAbilities)
-    {
-        activeAbilities.Clear();
-
-        foreach (ICharacterAbility ability in possibleAbilities)
-        {
-            MonoBehaviour abiAsMonobehaviour = ability as MonoBehaviour;
-            if (abiAsMonobehaviour.isActiveAndEnabled) { activeAbilities.Add(ability); }
-        }
-
-        // logging
-        string activeAbilitiesNamesForLog = "";
-        foreach (ICharacterAbility ability in activeAbilities)
-        {
-            activeAbilitiesNamesForLog += " " + ability.AbilityName + ",";
-        }
-        activeAbilitiesNamesForLog = activeAbilitiesNamesForLog.TrimEnd(',') + ".";
-        Debug.Log(activeAbilities.Count + " abilities are activated:" + activeAbilitiesNamesForLog);
-
-    }
 }
 

@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class Ability_Tiny : MonoBehaviour, ICharacterAbility
+public class Ability_Tiny : CharaAbilityBase, ICharacterAbility
 {
     //properties
     public string AbilityName { get; } = "BeTiny";
+    public abiType AbilityType { get; } = abiType.Tiny;
 
-    [Header("Sounds")]
-    [SerializeField] public AudioSource BGM;
+
+    [Header("Mechanics")]
     [SerializeField] [Range(0.1f, 1f)] float tinyScaleModifier = .3f;
 
     // cache
@@ -29,13 +30,9 @@ public class Ability_Tiny : MonoBehaviour, ICharacterAbility
         charaControllerDefaultHeight = characterController.height;
     }
 
-    void FixedUpdate()
-    {
-    }
-
     private void HandleBeTiny(bool isTiny)
     {
-        if (!this.isActiveAndEnabled) { return; }
+        if (!this.enabled) { return; }
 
         if (isTiny)
         {

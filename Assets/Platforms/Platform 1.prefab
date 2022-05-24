@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformZDimension: 4
-  backCentrePosition: {x: -1, y: -0.5, z: 0}
+  backCentrePosition: {x: 0, y: -0.5, z: 0}
   groundRowPrefab: {fileID: 7012441230949577812, guid: ff878fc3ba8b68f4ebff29023f2b6096, type: 3}
   obstacleOptions:
   - {fileID: 8141602367450062135, guid: 0b25874895a75e44bb530158f314e1f8, type: 3}
