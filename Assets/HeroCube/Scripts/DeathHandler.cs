@@ -29,6 +29,7 @@ public class DeathHandler : MonoBehaviour
     public void Die()
     {
         Debug.Log("YOU DIED");
+        // TODO pause and reset position to int closer to death point
         activeAbilityManager.ChangeAbility();
     }
 

@@ -21,14 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ground
-  m_Shader: {fileID: -6465566751694194690, guid: 19ec37aca24d5ea49aa78015b35db111, type: 3}
-  m_ValidKeywords: []
+  m_Shader: {fileID: -6465566751694194690, guid: 2ddc33f7761629746aad327668ea3b9c, type: 3}
+  m_ValidKeywords:
+  - _BUILTIN_SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -72,29 +74,45 @@ Material:
     m_Ints: []
     m_Floats:
     - _Amount: 0.005
+    - _BUILTIN_AlphaClip: 0
+    - _BUILTIN_Blend: 0
+    - _BUILTIN_CullMode: 2
+    - _BUILTIN_DstBlend: 10
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _BUILTIN_SrcBlend: 5
+    - _BUILTIN_Surface: 1
+    - _BUILTIN_ZTest: 4
+    - _BUILTIN_ZWrite: 0
+    - _BUILTIN_ZWriteControl: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _ENABLEBENDING: 1
     - _ENABLEROUNDING: 0
+    - _Fade: 1.4
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _Multiplier: 0.64
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Power: 1.15
     - _RoundingAmount: 0.005
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Transparency: 0.7
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.15325737, g: 0.6897249, b: 0.7924528, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FillColor: {r: 0, g: 0.015245438, b: 1, a: 0}
+    - _FresnelColor: {r: 0, g: 1.3041189, b: 0.18435189, a: 0}
     - _MainColor: {r: 0.043137252, g: 0.90661, b: 1, a: 0}
   m_BuildTextureStacks: []

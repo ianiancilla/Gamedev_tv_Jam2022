@@ -92,9 +92,9 @@ public class HeroCharacterController : MonoBehaviour
         float currentY = transform.position.y;
         float offset = zAfterLedgeFallToReset - currentY;
 
-        ChangeMotion(new Vector3(motion.x, 
+        ChangeMotion(new Vector3(0, 
                                  15,
-                                 motion.z));
+                                 forwardSpeed));
 
     }
 
