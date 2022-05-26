@@ -13,7 +13,7 @@ public class ActiveAbilityManager : MonoBehaviour
     private List<ICharacterAbility> possibleAbilities = new List<ICharacterAbility>();
     private List<ICharacterAbility> activeAbilities = new List<ICharacterAbility>();
 
-    public UnityEvent<Color> ColorChange;
+    public UnityEvent<float> HueShift;
 
     // cache
 
@@ -40,7 +40,7 @@ public class ActiveAbilityManager : MonoBehaviour
             SetAbilityActive(type, true);
         }
         RefreshActiveAbilitiesList();
-        FindCurrentColour();
+        FindCurrentHueShift();
     }
 
     // activating and checking abilities
@@ -98,19 +98,19 @@ public class ActiveAbilityManager : MonoBehaviour
         }
         RefreshActiveAbilitiesList();
 
-        FindCurrentColour();
+        FindCurrentHueShift();
     }
 
-    private void FindCurrentColour()
+    private void FindCurrentHueShift()
     {
         // find the new colour and trigger colour change
-        Color endColor = new Color(0, 0, 0);
+        float endHue = 0;
         foreach (ICharacterAbility activeAbility in activeAbilities)
         {
-            endColor += (activeAbility as CharaAbilityBase).GetColor();
+            endHue += (activeAbility as CharaAbilityBase).GetHueShift();
         }
-        endColor /= activeAbilities.Count;
-        ColorChange.Invoke(endColor);
+        endHue = (endHue%360) - 180;
+        HueShift.Invoke(endHue);
     }
 
     private abiType RandomiseNewAbility()

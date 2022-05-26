@@ -10,14 +10,13 @@ public class CharaAbilityBase : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] ControlActivator[] UI_Control;
-    [SerializeField] Color activatedColor = Color.magenta;
+    [SerializeField] float hueShift;
 
     private void OnEnable()
     {
         BGM.mute = false;
         foreach (ControlActivator ui in UI_Control)
         {
-            ui.activatedColor = activatedColor;
             ui?.SetControlActivation(true);
         }
     }
@@ -31,5 +30,5 @@ public class CharaAbilityBase : MonoBehaviour
         }
     }
 
-    public Color GetColor() { return activatedColor; }
+    public float GetHueShift() { return hueShift; }
 }

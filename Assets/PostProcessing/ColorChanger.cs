@@ -23,5 +23,10 @@ public class ColorChanger : MonoBehaviour
         colorGrading.colorFilter.value = newColor * intensity;
     }
 
+    public void ChangeHue(float hueShift)
+    {
+        colorGrading.hueShift.value = hueShift;
+    }
+
 
 }
