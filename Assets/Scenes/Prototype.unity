@@ -263,7 +263,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ddbcc577aac47b447bae6037808728df, type: 3}
+      objectReference: {fileID: 8300000, guid: c712b91655b948647b7ae9713e88f939, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!82 &18039527 stripped
@@ -1190,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &586515447
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,7 +1881,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: c3a771d2dac3fbc4d88b9f1fa7418459, type: 3}
+      objectReference: {fileID: 8300000, guid: 7e29e24e8b6f4534f9340eda316678f1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!82 &906931620 stripped
@@ -1963,7 +1963,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12218325, y: -0.00000001953915, z: 0.0000000024053792, w: 0.9925076}
+  m_LocalRotation: {x: 0.12218326, y: -0.000000015213198, z: 0.00000000187283, w: 0.9925076}
   m_LocalPosition: {x: 0, y: 2, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2449,7 +2449,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a32bdf8377b075f46b47d29a90b9728c, type: 3}
+      objectReference: {fileID: 8300000, guid: c961f1cef2cdc5040aba629db46c3fab, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!82 &1206987766 stripped
@@ -3235,7 +3235,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 75bdcef23c1f16249bbddda2247a3753, type: 3}
+      objectReference: {fileID: 8300000, guid: a8c3d090bb373da409335e52f2408384, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!82 &1550692566 stripped
@@ -3405,7 +3405,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722740446}
-  m_LocalRotation: {x: 0.000000007450581, y: 0.0000000092160395, z: -0.0000000023040088, w: 1}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.0000000042284736, z: -0.0000000010571185, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3645,6 +3645,14 @@ PrefabInstance:
       propertyPath: deactivatedColor.r
       value: 0.6698113
       objectReference: {fileID: 0}
+    - target: {fileID: 1921354021208454839, guid: 2689dd9356d9d1a48b2f78c67ca01111, type: 3}
+      propertyPath: m_text
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081231271958362641, guid: 2689dd9356d9d1a48b2f78c67ca01111, type: 3}
+      propertyPath: m_text
+      value: D
+      objectReference: {fileID: 0}
     - target: {fileID: 7215977166078657434, guid: 2689dd9356d9d1a48b2f78c67ca01111, type: 3}
       propertyPath: m_Name
       value: Control_D_Right
@@ -3845,7 +3853,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ec70573326648c643a4a97f7b0327220, type: 3}
+      objectReference: {fileID: 8300000, guid: 7cf4708443d53b44da8adc10d8880c81, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!1001 &1864849825
@@ -4294,7 +4302,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 90e310291d2b3994b807788f60a06012, type: 3}
+      objectReference: {fileID: 8300000, guid: 74507deb7f118bd49a628577590a1acc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!82 &2134551875 stripped
@@ -4355,11 +4363,11 @@ PrefabInstance:
       objectReference: {fileID: 1206987766}
     - target: {fileID: 1135002705708355073, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355073, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
-      value: 0.5697689
+      value: 0.03915453
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355073, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.g
@@ -4387,7 +4395,7 @@ PrefabInstance:
       objectReference: {fileID: 218989921}
     - target: {fileID: 1135002705708355074, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355074, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
@@ -4395,7 +4403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355074, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.g
-      value: 0.39565724
+      value: 0.68375194
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355074, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.r
@@ -4419,11 +4427,11 @@ PrefabInstance:
       objectReference: {fileID: 837714778}
     - target: {fileID: 1135002705708355075, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355075, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
-      value: 0.75219536
+      value: 0.49004698
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355075, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.g
@@ -4451,7 +4459,7 @@ PrefabInstance:
       objectReference: {fileID: 728182809}
     - target: {fileID: 1135002705708355076, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355076, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
@@ -4463,7 +4471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355076, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.r
-      value: 0.5999012
+      value: 0.73842573
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355076, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: UI_Control.Array.size
@@ -4483,7 +4491,7 @@ PrefabInstance:
       objectReference: {fileID: 175315362}
     - target: {fileID: 1135002705708355077, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355077, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
@@ -4495,7 +4503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355077, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.r
-      value: 0.83136284
+      value: 0.68076324
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355077, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: UI_Control.Array.size
@@ -4523,7 +4531,7 @@ PrefabInstance:
       objectReference: {fileID: 1459775407}
     - target: {fileID: 1135002705708355079, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.a
-      value: 0.39215687
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355079, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.b
@@ -4531,7 +4539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355079, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.g
-      value: 0.3436756
+      value: 0.8352941
       objectReference: {fileID: 0}
     - target: {fileID: 1135002705708355079, guid: e0637203fcd84e8458fc5c0e6ae95e27, type: 3}
       propertyPath: activatedColor.r
@@ -4628,7 +4636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 751125443238764988, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_Name
-      value: Flute
+      value: Guitar
       objectReference: {fileID: 0}
     - target: {fileID: 2318559904107185278, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_RootOrder
@@ -4693,7 +4701,7 @@ PrefabInstance:
     - target: {fileID: 4360503492761895999, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: b0a5a3ea2e46ab847a3a5181e45c2f03, type: 3}
+      objectReference: {fileID: 8300000, guid: 709debba1954fe64ba24fa6c487dc2f5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1ed456b978df945a7513f200a243d4, type: 3}
 --- !u!1001 &7721114832747875282

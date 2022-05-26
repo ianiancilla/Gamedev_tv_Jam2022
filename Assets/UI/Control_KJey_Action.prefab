@@ -211,7 +211,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 3.2
 --- !u!1 &7215977166078657434
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdd30f141e0c764e8bf56d103852a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatedColor: {r: 1, g: 0, b: 0, a: 1}
   deactivatedColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0.47058824}
+  activatedColor: {r: 1, g: 0, b: 0, a: 1}
   textFields:
   - {fileID: 3081231271958362641}
   - {fileID: 1921354021208454839}

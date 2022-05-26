@@ -6,6 +6,8 @@ using UnityEngine.Rendering.PostProcessing;
 [RequireComponent(typeof(PostProcessVolume))]
 public class ColorChanger : MonoBehaviour
 {
+    [SerializeField] [Range(0,2)] float intensity = 1;
+
     PostProcessVolume postProcessVolume;
     ColorGrading colorGrading;
 
@@ -18,7 +20,7 @@ public class ColorChanger : MonoBehaviour
 
     public void ChangeColorGrading(Color newColor)
     {
-        colorGrading.colorFilter.value = newColor;
+        colorGrading.colorFilter.value = newColor * intensity;
     }
 
 
