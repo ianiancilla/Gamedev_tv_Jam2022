@@ -12,10 +12,11 @@ public class HeroCharacterController : MonoBehaviour
     [Space]
     [SerializeField] float dashSpeedMultiplier = 2f;
     [Space]
-    [SerializeField] float zAfterLedgeFallToReset = 3f;
+    [SerializeField] float yAfterLedgeFallToReset = 3f;
 
     // member variables
     private Vector3 motion;
+    public bool Paused { get; set; } = false;
 
 
     // states
@@ -35,6 +36,8 @@ public class HeroCharacterController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Paused) { return; }
+
         // these calculate necessary movement, while ability scripts
         // do the same.
         // These are all stored in the Vector3 motion, which is then
@@ -87,14 +90,27 @@ public class HeroCharacterController : MonoBehaviour
     {
         motion = newMotion;
     }
-    public void PickUpFromFall()
+    public void ResetPositionOnDeath()
     {
-        float currentY = transform.position.y;
-        float offset = zAfterLedgeFallToReset - currentY;
+        //float currentY = transform.position.y;
+        //float offset = zAfterLedgeFallToReset - currentY;
 
-        ChangeMotion(new Vector3(0, 
-                                 15,
-                                 forwardSpeed));
+        //ChangeMotion(new Vector3(0, 
+        //                         15,
+        //                         forwardSpeed));
+
+        ChangeMotion(Vector3.zero);
+
+        Vector3 deathPos = transform.position;
+
+        float resetX = Mathf.RoundToInt(deathPos.x);
+        float resetZ = (int)(deathPos.z);
+
+        Vector3 resetPos = new Vector3(resetX,
+                                       yAfterLedgeFallToReset,
+                                       resetZ);
+
+        transform.position = resetPos;
 
     }
 

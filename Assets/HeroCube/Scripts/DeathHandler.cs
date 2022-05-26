@@ -8,10 +8,15 @@ public class DeathHandler : MonoBehaviour
 {
     [SerializeField] float deathPlaneY = -2f;
     [SerializeField] LayerMask killerLayers;
+    [SerializeField] float deathPauseTime = 0.5f;
 
     // cache
     HeroCharacterController characterController;
     ActiveAbilityManager activeAbilityManager;
+
+    // variables
+    bool dying = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +33,13 @@ public class DeathHandler : MonoBehaviour
 
     public void Die()
     {
+        if (dying) { return; }
+
         Debug.Log("YOU DIED");
         // TODO pause and reset position to int closer to death point
+
+        StartCoroutine(PauseAndResetPosOnDeath());
+
         activeAbilityManager.ChangeAbility();
     }
 
@@ -37,8 +47,6 @@ public class DeathHandler : MonoBehaviour
     {
         if (transform.position.y < deathPlaneY)
         {
-            Debug.Log("you fell");
-            characterController.PickUpFromFall();
             Die();
         }
     }
@@ -50,5 +58,19 @@ public class DeathHandler : MonoBehaviour
             hit.gameObject.SetActive(false);
             Die();
         }
+    }
+
+    IEnumerator PauseAndResetPosOnDeath()
+    {
+        characterController.Paused = true;
+        dying = true;
+
+        yield return new WaitForEndOfFrame();
+        characterController.ResetPositionOnDeath();
+
+        yield return new WaitForSeconds(deathPauseTime);
+
+        characterController.Paused = false;
+        dying=false;
     }
 }
