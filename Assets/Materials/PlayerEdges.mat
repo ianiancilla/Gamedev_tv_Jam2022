@@ -97,7 +97,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0, g: 0.6282296, b: 1, a: 1}
-    - _EdgeColor: {r: 0, g: 1.3739266, b: 2, a: 1}
+    - _EdgeColor: {r: 4, g: 4, b: 4, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FillColor: {r: 2, g: 0, b: 1.8117647, a: 0}

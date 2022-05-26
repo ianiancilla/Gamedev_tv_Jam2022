@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActiveAbilityManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ActiveAbilityManager : MonoBehaviour
     // variables
     private List<ICharacterAbility> possibleAbilities = new List<ICharacterAbility>();
     private List<ICharacterAbility> activeAbilities = new List<ICharacterAbility>();
+
+    public UnityEvent<Color> ColorChange;
 
     // cache
 
@@ -37,6 +40,7 @@ public class ActiveAbilityManager : MonoBehaviour
             SetAbilityActive(type, true);
         }
         RefreshActiveAbilitiesList();
+        FindCurrentColour();
     }
 
     // activating and checking abilities
@@ -93,6 +97,20 @@ public class ActiveAbilityManager : MonoBehaviour
             SetAbilityActive(type, false);
         }
         RefreshActiveAbilitiesList();
+
+        FindCurrentColour();
+    }
+
+    private void FindCurrentColour()
+    {
+        // find the new colour and trigger colour change
+        Color endColor = new Color(0, 0, 0);
+        foreach (ICharacterAbility activeAbility in activeAbilities)
+        {
+            endColor += (activeAbility as CharaAbilityBase).GetColor();
+        }
+        endColor /= activeAbilities.Count;
+        ColorChange.Invoke(endColor);
     }
 
     private abiType RandomiseNewAbility()

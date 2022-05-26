@@ -196,7 +196,7 @@
                 {
                     "name": "",
                     "id": "06260ffd-8ddd-4a58-9593-b5d9dc5134c1",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -218,7 +218,7 @@
                 {
                     "name": "",
                     "id": "9e9e5721-671c-4a4d-b7ba-2d6b22615fd3",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
