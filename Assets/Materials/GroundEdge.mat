@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GroundEdges
+  m_Name: GroundEdge
   m_Shader: {fileID: -6465566751694194690, guid: 3b4faa7a0409c2444959f5f77bead3e2, type: 3}
   m_ValidKeywords:
   - _BUILTIN_SURFACE_TYPE_TRANSPARENT

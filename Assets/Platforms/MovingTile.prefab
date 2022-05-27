@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8629259422397640631}
   - component: {fileID: 4168202471714109092}
   - component: {fileID: 1389453177895931250}
+  - component: {fileID: 7115386699583438023}
   m_Layer: 0
-  m_Name: GroundTile
+  m_Name: MovingTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,8 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ceca424b496314b41965c02007136c08, type: 2}
-  - {fileID: 2100000, guid: 84fd5c3eb54d59142af5c26b6a4fa712, type: 2}
+  - {fileID: 2100000, guid: cf333a57da381934cba197a101d4d15c, type: 2}
+  - {fileID: 2100000, guid: c4092c358bedbe24892d8c11be02dede, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,3 +99,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7115386699583438023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988280624159436037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8f90c5cf2bf1143bdd464dc62ec6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseTime: 2
+  movement: {x: 0, y: -1, z: 0}

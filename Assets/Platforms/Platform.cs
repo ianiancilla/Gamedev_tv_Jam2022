@@ -105,7 +105,7 @@ public class Platform : MonoBehaviour
         for (int i = 0; i < spawner.CurrentNumObstaclesOnSpawnedPlatform; i++)
         {
             int randIndex;
-            // select a ranom obstacle from available ones
+            // select a random obstacle from available ones
             randIndex = UnityEngine.Random.Range(0, obstacleOptions.Length);
             GameObject obstaclePrefab = obstacleOptions[randIndex];
 
@@ -122,7 +122,14 @@ public class Platform : MonoBehaviour
 
             // create obstacle and add to list
             GameObject obstacle = CreateRowAtPosition(obstaclePrefab, position);
-            obstacleRow.Add(obstacle);
+
+            //// initialise moving terrain positions
+            //InitaliseMovingTerrain initialisationComponent = obstacle.GetComponent<InitaliseMovingTerrain>();
+            //if (initialisationComponent != null)
+            //{
+            //    initialisationComponent.InitialiseTerrain();
+            //}
+            //obstacleRow.Add(obstacle);
         }
     }
 

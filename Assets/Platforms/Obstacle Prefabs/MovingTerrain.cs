@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class MovingTerrain : MonoBehaviour
 {
-    [SerializeField] float speed = 2f;
-    [SerializeField] Vector3 pos1;
-    [SerializeField] Vector3 pos2;
+    [SerializeField] float phaseTime = 2f;
+    [SerializeField] Vector3 movement;
 
-    // variables
-    private float phase = 0;
-    bool goingfwd = true; // trie if going fwd, false of going back
+    Vector3 startingPos;
 
-
-    private void OnEnable()
+    public void Start()
     {
-        transform.localPosition = pos1;
+        startingPos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = Vector3.Lerp(pos1, pos2, (Mathf.Sin(speed * Time.time) + 1.0f) / 2.0f);
+        transform.localPosition = Vector3.Lerp(startingPos,
+                                               startingPos + movement,
+                                               (Mathf.Sin(phaseTime * Time.time) + 1.0f) / 2.0f);
     }
 }
