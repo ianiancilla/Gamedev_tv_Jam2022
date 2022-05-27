@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 
 public class LifeCounter : MonoBehaviour
@@ -10,6 +11,7 @@ public class LifeCounter : MonoBehaviour
     [SerializeField] int maxLives;
     [SerializeField] TextMeshProUGUI lifeCounter;
 
+    public UnityEvent GameOver;
 
     public int currentLives { get; private set; }
 
@@ -23,6 +25,8 @@ public class LifeCounter : MonoBehaviour
     {
         currentLives--;
         UpdateText();
+
+        if (currentLives <= 0) { GameOver.Invoke(); }
     }
 
     private void UpdateText()

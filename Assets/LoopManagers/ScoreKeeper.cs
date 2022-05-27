@@ -32,6 +32,8 @@ public class ScoreKeeper : MonoBehaviour
 
         int scoreInt = (int)(Score);
 
+        StaticScore.Score = scoreInt;
+
         scoreText.text = scoreInt.ToString();
     }
 
