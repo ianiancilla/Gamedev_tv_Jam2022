@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ActiveAbilityManager : MonoBehaviour
 {
     // properties
+    [SerializeField] bool randomiseStartingAbilities;
     [SerializeField] List<abiType> startingAbilities;
     [SerializeField] int maxAbilityNumber = 2;
 
@@ -35,9 +36,19 @@ public class ActiveAbilityManager : MonoBehaviour
             (ability as MonoBehaviour).enabled = false;
         }
 
-        foreach (abiType type in startingAbilities)
+        if (randomiseStartingAbilities)
         {
-            SetAbilityActive(type, true);
+            for (int i = 0; i < startingAbilities.Count; i++)
+            {
+                SetAbilityActive(RandomiseNewAbility(), true);
+            }
+        }
+        else
+        {
+            foreach (abiType type in startingAbilities)
+            {
+                SetAbilityActive(type, true);
+            }
         }
         RefreshActiveAbilitiesList();
         FindCurrentHueShift();

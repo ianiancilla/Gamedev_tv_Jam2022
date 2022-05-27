@@ -1512,9 +1512,9 @@ MonoBehaviour:
 
 
     There are six possible
-    player actions, but only two are at available at any one time. Avoid obstacles
-    and falls with what you have...  Sometimes death is unavoidable withthe powers
-    at hand, but dying is not the end, it is just the beginning of a new action combination....'
+    player actions, but only two are available at any one time. Avoid obstacles and
+    falls with what you have...  Sometimes death is unavoidable with the powers at
+    hand, but dying is not the end, it is just the beginning of a new action combination....'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bbca4acafa2d8ab49967da66c7906cc9, type: 2}
   m_sharedMaterial: {fileID: -2802973900450799573, guid: bbca4acafa2d8ab49967da66c7906cc9, type: 2}
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
