@@ -19,6 +19,12 @@ public class Ability_HoldStill : CharaAbilityBase, ICharacterAbility
         heroController = GetComponent<HeroCharacterController>();
     }
 
+    private void OnDisable()
+    {
+        base.OnDisable();
+        heroController.HoldingStill = false;
+    }
+
     private void HandleHoldStill(bool holdingStill)
     {
         if (!this.enabled) { return; }

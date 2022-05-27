@@ -30,26 +30,44 @@ public class Ability_Tiny : CharaAbilityBase, ICharacterAbility
         charaControllerDefaultHeight = characterController.height;
     }
 
+    private void OnDisable()
+    {
+        base.OnDisable();
+        MakeBig();
+    }
+
     private void HandleBeTiny(bool isTiny)
     {
         if (!this.enabled) { return; }
 
         if (isTiny)
         {
-            transform.localScale = Vector3.one * tinyScaleModifier;
-            characterController.height = charaControllerDefaultHeight * tinyScaleModifier;
+            MakeTiny();
         }
         else
         {
-            transform.localScale = Vector3.one;
-            characterController.height = charaControllerDefaultHeight;
+            MakeBig();
         }
     }
+
+    private void MakeBig()
+    {
+        transform.localScale = Vector3.one;
+        characterController.height = charaControllerDefaultHeight;
+    }
+
+    private void MakeTiny()
+    {
+        transform.localScale = Vector3.one * tinyScaleModifier;
+        characterController.height = charaControllerDefaultHeight * tinyScaleModifier;
+    }
+
     public void BeTinyInput(InputAction.CallbackContext value)
     {
         bool isTiny = value.ReadValueAsButton();
         Debug.Log("Being Tiny: " + isTiny);
         HandleBeTiny(isTiny);
     }
+
 
 }

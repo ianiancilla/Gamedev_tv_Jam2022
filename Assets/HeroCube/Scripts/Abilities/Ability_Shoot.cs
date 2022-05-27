@@ -14,14 +14,20 @@ public class Ability_Shoot : CharaAbilityBase, ICharacterAbility
     [Header("Mechanics")]
     [SerializeField] ProjectileShooter projectileShooter;
 
-    private void Start()
+    private void OnDisable()
     {
-        // just need it so the Monobehaviour can have an activation toggle T_T
+        base.OnDisable();
+        SetShootingActiveState(false);
     }
 
     private void HandleShooting(bool isShooting)
     {
         if (!this.enabled) { return; }
+        SetShootingActiveState(isShooting);
+    }
+
+    private void SetShootingActiveState(bool isShooting)
+    {
         projectileShooter.EnableShooting(isShooting);
     }
 

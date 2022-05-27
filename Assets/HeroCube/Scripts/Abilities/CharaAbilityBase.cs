@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class CharaAbilityBase : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         BGM.mute = true;
         foreach (ControlActivator ui in UI_Control)
@@ -29,6 +30,7 @@ public class CharaAbilityBase : MonoBehaviour
             ui?.SetControlActivation(false);
         }
     }
+
 
     public float GetHueShift() { return hueShift; }
 }

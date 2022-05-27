@@ -25,6 +25,12 @@ public class Ability_Dash : CharaAbilityBase, ICharacterAbility
         heroController = GetComponent<HeroCharacterController>();
     }
 
+    private void OnDisable()
+    {
+        base.OnDisable();
+        heroController.Dashing = false;
+    }
+
     private IEnumerator HandleDash()
     {
         heroController.Dashing = true;
