@@ -59,7 +59,7 @@ public class Ability_Tiny : CharaAbilityBase, ICharacterAbility
     private void MakeTiny()
     {
         transform.localScale = Vector3.one * tinyScaleModifier;
-        characterController.height = charaControllerDefaultHeight * tinyScaleModifier;
+        characterController.height = charaControllerDefaultHeight * tinyScaleModifier / 2;
     }
 
     public void BeTinyInput(InputAction.CallbackContext value)
