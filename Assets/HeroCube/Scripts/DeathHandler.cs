@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 [RequireComponent(typeof(HeroCharacterController))]
 [RequireComponent(typeof(ActiveAbilityManager))]
@@ -17,6 +19,7 @@ public class DeathHandler : MonoBehaviour
     // variables
     bool dying = false;
 
+    public UnityEvent Death;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +39,8 @@ public class DeathHandler : MonoBehaviour
         if (dying) { return; }
 
         Debug.Log("YOU DIED");
-        // TODO pause and reset position to int closer to death point
 
+        Death.Invoke();
         StartCoroutine(PauseAndResetPosOnDeath());
 
         activeAbilityManager.ChangeAbility();

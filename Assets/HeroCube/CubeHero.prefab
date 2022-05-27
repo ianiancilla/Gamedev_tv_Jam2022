@@ -243,6 +243,7 @@ MonoBehaviour:
   forwardSpeed: 3
   gravity: 25
   dashSpeedMultiplier: 4
+  yAfterLedgeFallToReset: 0.5
 --- !u!114 &5506641123393956360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36033d58cc18884cb9505f89e40bb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPlaneY: -2
+  killerLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  deathPauseTime: 1
 --- !u!114 &44738638328874199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +273,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2628cbb56ee06542aac068e8b3b8727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAbilities: 
+  startingAbilities: 0300000004000000
   maxAbilityNumber: 2
+  HueShift:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ColorChanger, Assembly-CSharp
+        m_MethodName: ChangeHue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1135002705708355079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +304,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
-  jumpHeight: 2.5
+  UI_Control:
+  - {fileID: 0}
+  hueShift: 0
+  jumpHeight: 3.5
 --- !u!114 &1135002705708355077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +322,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
+  UI_Control:
+  - {fileID: 0}
+  - {fileID: 0}
+  hueShift: 40
   AvailableLanes:
   - xPos: -1
   - xPos: 0
@@ -319,6 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
+  UI_Control:
+  - {fileID: 0}
+  hueShift: 125
   dashTimeDuration: 0.3
 --- !u!114 &1135002705708355075
 MonoBehaviour:
@@ -334,6 +365,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
+  UI_Control:
+  - {fileID: 0}
+  hueShift: 180
   tinyScaleModifier: 0.3
 --- !u!114 &1135002705708355074
 MonoBehaviour:
@@ -349,6 +383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
+  UI_Control:
+  - {fileID: 0}
+  hueShift: 276
 --- !u!114 &1135002705708355073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +400,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGM: {fileID: 0}
   volume: 0.2
+  UI_Control:
+  - {fileID: 0}
+  hueShift: 365
   projectileShooter: {fileID: 1135002707602111451}
 --- !u!1 &1135002706749845620
 GameObject:
@@ -405,7 +445,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135002706749845620}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: 474d44de1b2c32e41b0b7773dda3a897, type: 3}
 --- !u!23 &1135002706749845618
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -427,6 +467,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8183f536a820c4b4da37ecb25705a52a, type: 2}
+  - {fileID: 2100000, guid: 6a36776ca4b94214b843e0c635162e0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

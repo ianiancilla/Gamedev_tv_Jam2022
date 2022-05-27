@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class HeroCharacterController : MonoBehaviour
@@ -17,7 +18,6 @@ public class HeroCharacterController : MonoBehaviour
     // member variables
     private Vector3 motion;
     public bool Paused { get; set; } = false;
-
 
     // states
     public bool Dashing { get; set; } = false;
