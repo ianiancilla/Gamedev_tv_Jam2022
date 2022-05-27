@@ -26,8 +26,8 @@ public class Platform : MonoBehaviour
                                                    //is created
 
     List<Vector3> rowsPositions = new List<Vector3>();
-    List<GameObject> groundRow = new List<GameObject>();
-    List<GameObject> obstacleRow = new List<GameObject>();
+    List<GameObject> groundRows = new List<GameObject>();
+    List<GameObject> obstacleRows = new List<GameObject>();
 
     [HideInInspector] public PlatformSpawner spawner;
 
@@ -73,7 +73,7 @@ public class Platform : MonoBehaviour
         foreach (Vector3 position in rowsPositions)
         {
             GameObject newRow = CreateRowAtPosition(groundRowPrefab, position);
-            groundRow.Add(newRow);
+            groundRows.Add(newRow);
         }
     }
 
@@ -91,13 +91,13 @@ public class Platform : MonoBehaviour
 
     private void RemoveObstacles()
     {
-        foreach (GameObject obstacle in obstacleRow)
+        foreach (GameObject obstacle in obstacleRows)
         {
             var newRow = CreateRowAtPosition(groundRowPrefab, obstacle.transform.position);
-            groundRow.Add(newRow);
+            groundRows.Add(newRow);
             Destroy(obstacle);
         }
-        obstacleRow.Clear();
+        obstacleRows.Clear();
     }
 
     private void GenerateRandomObstacles()
@@ -110,26 +110,19 @@ public class Platform : MonoBehaviour
             GameObject obstaclePrefab = obstacleOptions[randIndex];
 
             // select a random row
-            randIndex = UnityEngine.Random.Range(0, groundRow.Count);
-            GameObject rowToRemove = groundRow[randIndex];
+            randIndex = UnityEngine.Random.Range(0, groundRows.Count);
+            GameObject rowToRemove = groundRows[randIndex];
 
             // find position
             Vector3 position = rowToRemove.transform.position;
 
             // remove row from list and destroy it
-            groundRow.Remove(rowToRemove);
+            groundRows.Remove(rowToRemove);
             Destroy(rowToRemove);
 
             // create obstacle and add to list
             GameObject obstacle = CreateRowAtPosition(obstaclePrefab, position);
-
-            //// initialise moving terrain positions
-            //InitaliseMovingTerrain initialisationComponent = obstacle.GetComponent<InitaliseMovingTerrain>();
-            //if (initialisationComponent != null)
-            //{
-            //    initialisationComponent.InitialiseTerrain();
-            //}
-            //obstacleRow.Add(obstacle);
+            obstacleRows.Add(obstacle);
         }
     }
 

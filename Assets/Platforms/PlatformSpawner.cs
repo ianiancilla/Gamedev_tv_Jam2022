@@ -62,8 +62,10 @@ public class PlatformSpawner : MonoBehaviour
 
     private void PositionPlatformOnGet(GameObject obj)
     {
+        // se era disattiva, attivala
         if (!obj.activeSelf) { obj.SetActive(true); }
 
+        // decidi dove metterla
         if (activePlatforms.Count == 0)
         {
             obj.transform.position = Vector3.zero;
